@@ -1,10 +1,17 @@
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib import admin
 
-urlpatterns = [
-    # Examples:
-    # url(r'^$', 'CS3240FinalProject.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+# importing views
+# we need to create views.py
+from . import views
+from registration import views as registration_views
 
-    url(r'^admin/', include(admin.site.urls)),
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    # define the url getdata that we have written inside form
+    url(r'^signup/', registration_views.signupform),
+    url(r'^success/', registration_views.signupform),
+
+    # defining the view for root URL
+    url(r'^$', registration_views.signupform),
 ]
