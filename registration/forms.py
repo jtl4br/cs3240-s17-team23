@@ -16,5 +16,5 @@ class Signup(forms.Form):
     Type = forms.ChoiceField(label='Type of User', choices=[('INV_USR', 'Investor'),('CMP_USR', 'Company')])
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Enter your username', max_length=25, required=True)
-    password = forms.CharField(label='Enter a password', max_length=25, widget=forms.PasswordInput, required=True)
+    username = forms.CharField(label='username', max_length=25, required=True)
+    password = forms.CharField(label='password', max_length=25, widget=forms.PasswordInput, required=True)
