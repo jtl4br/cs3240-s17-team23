@@ -42,3 +42,6 @@ def login_view(request):
     else:
         form = LoginForm()
     return render(request, 'logintemp.html', {'form': form})
+
+def home(request):
+    return render(request, 'home.html')
