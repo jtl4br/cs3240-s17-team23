@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .forms import Signup, LoginForm
+from .forms import Signup, LoginForm, ReportForm
 from .models import SiteUser
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
@@ -45,3 +45,24 @@ def login_view(request):
 
 def home(request):
     return render(request, 'home.html')
+
+
+def reportform(request):
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            name = request.POST.get("company_name", '')
+            num = request.POST.get("company_phone", '')
+        report_obj = report(company_name=name, company_phone=num)
+        report_obj.save()
+    elif request.method == "GET":
+        form = ReportForm(request.GET)
+        return render(request, 'reports.html', {'form': form})
+
+
+
+
+
+
+
+

@@ -12,7 +12,8 @@ urlpatterns = [
     url(r'^signup/', registration_views.signupform),
     url(r'^success/', registration_views.signupform),
     url(r'^login/', registration_views.login_view),
-    url(r'^home/', registration_views.home),
+    url(r'^home/', registration_views.home, name='home'),
+    url(r'^createreport/', registration_views.reportform),
 
 
     # defining the view for root URL

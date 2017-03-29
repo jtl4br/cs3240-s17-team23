@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" crossorigin="anonymous">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+</head>
+<body>
+<h2>report</h2>
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Report</h3>
+            </div>
+            <div class="panel-body">
+                {% if error_message %}
+                <span class="error_message">{{ error_message }}</span>
+                {% endif %}
+                <form method='post' action="{% url 'home' %}"> <!-- Clicking submit takes you back to home page -->
+                {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</html>
