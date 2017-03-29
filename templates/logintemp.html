@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LFC Login </title>
+</head>
+<body>
+<h2>LFC Login</h2>
+<form action="/login/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+<p></p>
+<button><a href="/signup/">Register</a></button>
+<p style="color: mediumvioletred">{{response}}</p>
+</body>
+</html>

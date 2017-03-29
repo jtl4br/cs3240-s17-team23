@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
-from .forms import Signup
+from .forms import Signup, LoginForm
 from .models import SiteUser
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -21,4 +22,23 @@ def signupform(request):
     else:
     # creating a new form
         form = Signup()
-    return render(request, 'signupform.html', {'form': form});
+    return render(request, 'signupform.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            if user is not None:
+                login(request, user)
+                return render(request, 'home.html')
+            # A backend authenticated the credentials
+            else:
+                return render(request, 'logintemp.html', {'response': 'Invalid Login', 'form': form})
+        # No backend authenticated the credentials
+
+
+
+    else:
+        form = LoginForm()
+    return render(request, 'logintemp.html', {'form': form})
