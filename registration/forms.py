@@ -24,6 +24,6 @@ class LoginForm(forms.Form):
 class ReportForm(ModelForm):
     class Meta:
         model = report
-        fields = ['company_name', 'company_phone']
+        fields = ['company_name', 'company_phone', 'ceo', 'company_email', 'company_location']
 
 
