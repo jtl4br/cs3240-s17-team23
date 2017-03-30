@@ -21,7 +21,7 @@
                 {% if error_message %}
                 <span class="error_message">{{ error_message }}</span>
                 {% endif %}
-                <form method='post' action="{% url 'home' %}"> <!-- Clicking submit takes you back to home page -->
+                <form method='post' action="reportform()"> <!-- Clicking submit takes you back to home page -->
                 {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-primary">Submit</button>

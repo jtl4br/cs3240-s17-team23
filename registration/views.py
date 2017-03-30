@@ -51,10 +51,11 @@ def reportform(request):
     if request.method == 'POST':
         form = ReportForm(request.POST)
         if form.is_valid():
-            name = request.POST.get("company_name", '')
-            num = request.POST.get("company_phone", '')
-        report_obj = report(company_name=name, company_phone=num)
-        report_obj.save()
+            report = form.save()
+            report.name = request.POST.get("company_name", '')
+            report.num = request.POST.get("company_phone", '')
+            report.save()
+            return render(request, 'home.html')
     elif request.method == "GET":
         form = ReportForm(request.GET)
         return render(request, 'reports.html', {'form': form})
