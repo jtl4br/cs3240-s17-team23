@@ -15,7 +15,7 @@
 	<div class="panel panel-primary">
 	<div class="panel-heading">Login</div>
 	<div class="panel panel-body">
-	<div class="col-xs-9 col-sm-6 col-sm-push-3"
+	<div class="col-xs-9 col-sm-6 col-sm-push-3">
 	<form action="/login/" class="form-vertical" method="post">
 	
 	    {% csrf_token %}
@@ -28,7 +28,7 @@
 	</div>
 	<p></p>
 
-  	<button class="btn btn-primary btn-lg" href="/signup/">Register</button>
+  	<a class="btn btn-primary btn-lg" href="/signup/">Register</a>
 
   	<p style="color: mediumvioletred">{{response}}</p>
 </div>
