@@ -5,6 +5,7 @@ from django.contrib import admin
 # we need to create views.py
 from . import views
 from registration import views as registration_views
+from reports import views as report_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -14,7 +15,7 @@ urlpatterns = [
     url(r'^login/', registration_views.login_view),
     url(r'^home/', registration_views.home, name='home'),
     url(r'^createreport/', registration_views.reportform),
-
+    url(r'^uploadfile/', report_views.upload_file),
 
     # defining the view for root URL
     url(r'^$', registration_views.login_view),

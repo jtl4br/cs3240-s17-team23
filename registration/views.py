@@ -1,9 +1,9 @@
 from django.shortcuts import render
-
+from django.http import HttpResponseRedirect
 from .forms import Signup, LoginForm, ReportForm
 from .models import SiteUser
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
+from django.views.generic.edit import FormView
 
 # Create your views here.
 
@@ -59,6 +59,11 @@ def reportform(request):
     elif request.method == "GET":
         form = ReportForm(request.GET)
         return render(request, 'reports.html', {'form': form})
+
+# still need to put in function from somewhere import handle_uploaded_file
+
+
+
 
 
 
