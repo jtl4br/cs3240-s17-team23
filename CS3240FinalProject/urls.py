@@ -20,4 +20,8 @@ urlpatterns = [
     # defining the view for root URL
     url(r'^$', registration_views.login_view),
     url(r'^upload/', report_views.upload_file)
+
+    url(r'^createGroup/', creategroup_views.newGroupForm),
+    url(r'^groupCreated/', creategroup_views.newGroupForm),
+    url(r'^getdata/', creategroup_views.newGroupForm),
 ]
