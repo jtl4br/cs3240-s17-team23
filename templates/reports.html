@@ -24,13 +24,19 @@
                 <form method='post' action="reportform()"> <!-- Clicking submit takes you back to home page -->
                 {% csrf_token %}
                     {{ form.as_p }}
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+            <p></p>
+            <a href="/upload/">
+<button type="submit" class="btn btn-primary"  >Upload File</button>
+</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+
 
 </body>
 

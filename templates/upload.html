@@ -6,8 +6,9 @@
 </head>
 <body>
 <h2>File Upload</h2>
-<form method="post" action="/getdata/">
+<form  action="/upload/" method="post" enctype="multipart/form-data">
     <table>
+        {% csrf_token %}
         {{ form.as_table }}
         <button type="submit">Upload</button>
     </table>
