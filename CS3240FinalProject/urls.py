@@ -6,6 +6,7 @@ from django.contrib import admin
 from . import views
 from registration import views as registration_views
 from reports import views as report_views
+from creategroup import views as creategroup_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -15,11 +16,12 @@ urlpatterns = [
     url(r'^login/', registration_views.login_view),
     url(r'^home/', registration_views.home, name='home'),
     url(r'^createreport/', registration_views.reportform),
+    url(r'^logout/', registration_views.logout),
     url(r'^uploadfile/', report_views.upload_file),
 
     # defining the view for root URL
     url(r'^$', registration_views.login_view),
-    url(r'^upload/', report_views.upload_file)
+    url(r'^upload/', report_views.upload_file),
 
     url(r'^createGroup/', creategroup_views.newGroupForm),
     url(r'^groupCreated/', creategroup_views.newGroupForm),
