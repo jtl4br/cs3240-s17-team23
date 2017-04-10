@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<table>
+<tr>
+  <th>Username</th>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>Admin Status</th>
+</tr>
+{% for b in obj %}
+<tr>
+  <td>{{ b.username }}</td>
+  <td>{{ b.first_name }}</td>
+  <td>{{ b.last_name }}</td>
+  <td>{{ b.admin_status }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

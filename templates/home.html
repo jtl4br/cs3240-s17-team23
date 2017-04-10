@@ -6,7 +6,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    {% if user.admin_status %}
+        <title>Admin Home</title>
+    {% else %}
+        <title>Home</title>
+    {% endif %}
+
+
 </head>
 <body>
 <h2>Home Page Placeholder</h2>
@@ -15,8 +21,10 @@
 <div class="panel-body center">
     <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
     <p>Reports</p>
-
 </div>
+{% if user.admin_status %}
+    <a class="btn btn-primary btn-lg" href="/displayusers">View Site Users</a>
+{% endif %}
 </a>
 
 </body>

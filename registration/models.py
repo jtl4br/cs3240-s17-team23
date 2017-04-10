@@ -14,6 +14,8 @@ class SiteUser(AbstractUser):
         choices=USER_CHOICES,
         default='INV_USR'
     )
+    admin_status = models.BooleanField(default=0)
+
 
 class report(models.Model):
     company_name = models.CharField(max_length=50)

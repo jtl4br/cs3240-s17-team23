@@ -18,6 +18,7 @@ def signupform(request):
             user.first_name = request.POST['firstname']
             user.last_name = request.POST['lastname']
             user.user_type = request.POST['Type']
+            user.save()
             return render(request, 'success.html')
     else:
     # creating a new form
