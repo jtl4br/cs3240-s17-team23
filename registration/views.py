@@ -9,6 +9,8 @@ from django.views.generic.edit import FormView
 
 def signupform(request):
     # if form is submitted
+    if request.session['loggedIn'] == True:
+        return home(request)
     if request.method == 'POST':
         form = Signup(request.POST)
         if form.is_valid():
@@ -18,6 +20,9 @@ def signupform(request):
             user.first_name = request.POST['firstname']
             user.last_name = request.POST['lastname']
             user.user_type = request.POST['Type']
+            request.session['username'] = request.POST['username']
+            request.session['user_type'] = user.user_type
+            request.session['loggedIn'] = True
             return render(request, 'success.html')
     else:
     # creating a new form
@@ -31,23 +36,53 @@ def login_view(request):
             user = authenticate(username=request.POST['username'], password=request.POST['password'])
             if user is not None:
                 login(request, user)
+                request.session['username'] = request.POST['username']
+                request.session['user_type'] = user.user_type
+                request.session['loggedIn'] = True
+                if user.user_type != None:
+                    if user.user_type == 'INV_USR':
+                        return render(request, 'inv_home.html')
+                    elif user.user_type == 'CMP_USR':
+                        return render(request, 'cmp_home.html')
                 return render(request, 'home.html')
+
             # A backend authenticated the credentials
             else:
                 return render(request, 'logintemp.html', {'response': 'Invalid Login', 'form': form})
         # No backend authenticated the credentials
 
 
-
     else:
-        form = LoginForm()
-    return render(request, 'logintemp.html', {'form': form})
+        if request.session['loggedIn'] == True:
+            return home(request)
+        else:
+            form = LoginForm()
+            return render(request, 'logintemp.html', {'form': form})
 
 def home(request):
+    if request.session['loggedIn'] == False:
+        form = LoginForm()
+        return render(request, 'logintemp.html', {'form': form})
+    user_type = request.session['user_type']
+    if user_type != None:
+        if user_type == 'INV_USR':
+            return render(request, 'inv_home.html')
+        elif user_type == 'CMP_USR':
+            return render(request, 'cmp_home.html')
     return render(request, 'home.html')
+
+def logout(request):
+    request.session['username'] = None
+    request.session['user_type'] = None
+    request.session['loggedIn'] = False
+    form = LoginForm()
+    return render(request, 'logintemp.html', {'form': form})
 
 
 def reportform(request):
+    if request.session['loggedIn'] == False:
+        form = LoginForm()
+        return render(request, 'logintemp.html', {'form': form})
     if request.method == 'POST':
         form = ReportForm(request.POST)
         if form.is_valid():
