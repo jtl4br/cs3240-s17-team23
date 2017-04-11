@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<body>
+
+<form>
+  <input type="text" name="search" placeholder="Search..">
+</form>
+<br><br/>
+
 {% for report in reports %}
     <div>
         <p>Company Name: {{ report.company_name }}</p>
@@ -15,6 +22,8 @@
 <div>
 <a class="btn btn-primary btn-lg" href="/home/">Back</a>
 </div>
+
+</body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
