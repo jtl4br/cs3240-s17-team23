@@ -9,6 +9,8 @@ from django.views.generic.edit import FormView
 
 def signupform(request):
     # if form is submitted
+    if 'loggedIn' not in request.session:
+        request.session['loggedIn'] = False
     if request.session['loggedIn'] == True:
         return home(request)
     if request.method == 'POST':
@@ -53,6 +55,8 @@ def login_view(request):
 
 
     else:
+        if 'loggedIn' not in request.session:
+            request.session['loggedIn'] = False
         if request.session['loggedIn'] == True:
             return home(request)
         else:
@@ -60,6 +64,8 @@ def login_view(request):
             return render(request, 'logintemp.html', {'form': form})
 
 def home(request):
+    if 'loggedIn' not in request.session:
+        request.session['loggedIn'] = False
     if request.session['loggedIn'] == False:
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
@@ -80,6 +86,8 @@ def logout(request):
 
 
 def reportform(request):
+    if 'loggedIn' not in request.session:
+        request.session['loggedIn'] = False
     if request.session['loggedIn'] == False:
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})

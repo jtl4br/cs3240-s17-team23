@@ -12,6 +12,8 @@ from registration.forms import LoginForm
 # disabling csrf (cross site request forgery)
 @csrf_exempt
 def newGroupForm(request):
+    if 'loggedIn' not in request.session:
+        request.session['loggedIn'] = False
     if request.session['loggedIn'] == False:
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})

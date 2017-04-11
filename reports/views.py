@@ -6,6 +6,8 @@ from registration.forms import LoginForm
 # Imaginary function to handle an uploaded file.
 
 def upload_file(request):
+    if 'loggedIn' not in request.session:
+        request.session['loggedIn'] = False
     if request.session['loggedIn'] == False:
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
