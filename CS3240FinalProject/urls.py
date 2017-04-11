@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^login/', registration_views.login_view),
     url(r'^home/', registration_views.home, name='home'),
     url(r'^createreport/', registration_views.reportform),
+    url(r'^viewreports/', registration_views.getReports),
     url(r'^uploadfile/', report_views.upload_file),
     url(r'^displayusers/', admin_views.display_users),
 
