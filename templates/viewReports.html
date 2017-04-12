@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+<a href="/home" class="btn btn-primary">Lokahi</a>
+<a href="/logout" class="btn btn-primary" float="right">Logout</a>
+<form>
+  <input type="text" name="search" placeholder="Search..">
+</form>
+<br><br/>
+
+{% for report in reports %}
+    <div>
+        <p>Company Name: {{ report.company_name }}</p>
+        <p>Phone Number: {{ report.company_phone}}</p>
+    <br><br/>
+    </div>
+{% endfor %}
+
+<link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" crossorigin="anonymous">
+<script src="https://use.fontawesome.com/ebf1c6b47e.js"></script>
+
+<div>
+<a class="btn btn-primary btn-lg" href="/home/">Back</a>
+</div>
+
+</body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</html>

@@ -6,9 +6,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Company Home Page</title>
+    {% if user.admin_status %}
+        <title>Company Home Page (Admin)</title>
+    {% else %}
+        <title>Company Home Page</title>
+    {% endif %}
 </head>
 <body>
+<a href="/home" class="btn btn-primary">Lokahi</a>
 <a href="/logout" class="btn btn-primary" float="right">Logout</a>
 <h2>Company Home Page Placeholder</h2>
 

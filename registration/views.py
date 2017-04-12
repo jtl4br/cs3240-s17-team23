@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import Signup, LoginForm, ReportForm
-from .models import SiteUser
+from .models import SiteUser, report
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 
@@ -22,6 +22,7 @@ def signupform(request):
             user.first_name = request.POST['firstname']
             user.last_name = request.POST['lastname']
             user.user_type = request.POST['Type']
+            user.save()
             request.session['username'] = request.POST['username']
             request.session['user_type'] = user.user_type
             request.session['loggedIn'] = True
@@ -102,6 +103,10 @@ def reportform(request):
     elif request.method == "GET":
         form = ReportForm(request.GET)
         return render(request, 'reports.html', {'form': form})
+
+def getReports(request):
+    reports = report.objects.all()
+    return render(request, 'viewReports.html', {'reports': reports})
 
 # still need to put in function from somewhere import handle_uploaded_file
 
