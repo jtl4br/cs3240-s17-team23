@@ -4,6 +4,9 @@ from .forms import Signup, LoginForm, ReportForm
 from .models import SiteUser, report
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
+from django.views.decorators.csrf import csrf_exempt
+
+from django.db.models import Q
 
 # Create your views here.
 
@@ -107,6 +110,14 @@ def reportform(request):
 def getReports(request):
     reports = report.objects.all()
     return render(request, 'viewReports.html', {'reports': reports})
+
+@csrf_exempt
+def search(request):
+    if request.method == 'POST':
+        searchBar = request.POST.get('search')
+
+        reports = report.objects.filter(Q(company_name=searchBar)|Q(company_phone__contains=searchBar))
+        return render(request, 'viewReports.html', {'reports': reports})
 
 # still need to put in function from somewhere import handle_uploaded_file
 

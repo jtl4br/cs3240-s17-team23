@@ -2,11 +2,15 @@
 <html lang="en">
 
 <body>
-<a href="/home" class="btn btn-primary">Lokahi</a>
-<a href="/logout" class="btn btn-primary" float="right">Logout</a>
-<form>
-  <input type="text" name="search" placeholder="Search..">
+
+
+
+
+<form action="/search/" method="post">
+    <input type="text" name="search" placeholder="Search..">
 </form>
+
+
 <br><br/>
 
 {% for report in reports %}
