@@ -6,6 +6,10 @@ from django.contrib import admin
 from . import views
 from registration import views as registration_views
 from reports import views as report_views
+from creategroup import views as creategroup_views
+from admin import views as admin_views
+from django.conf.urls import url
+from django.contrib import admin
 from admin import views as admin_views
 
 urlpatterns = [
@@ -16,6 +20,8 @@ urlpatterns = [
     url(r'^login/', registration_views.login_view),
     url(r'^home/', registration_views.home, name='home'),
     url(r'^createreport/', registration_views.reportform),
+    url(r'^logout/', registration_views.logout),
+    url(r'^viewreports/', registration_views.getReports),
     url(r'^uploadfile/', report_views.upload_file),
     url(r'^displayusers/', admin_views.display_users),
     url(r'^edituser/(.*)/', admin_views.edit_user),
@@ -24,4 +30,8 @@ urlpatterns = [
     url(r'^$', registration_views.login_view),
     url(r'^upload/', report_views.upload_file),
 
+    url(r'^createGroup/', creategroup_views.newGroupForm),
+    url(r'^groupCreated/', creategroup_views.newGroupForm),
+    url(r'^getdata/', creategroup_views.newGroupForm),
 ]
+
