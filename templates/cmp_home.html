@@ -30,6 +30,10 @@
 </div>
 </a>
 
+{% if user.admin_status %}
+    <a class="btn btn-primary btn-lg" href="/displayusers">View Site Users</a>
+{% endif %}
+
 </body>
 
 
