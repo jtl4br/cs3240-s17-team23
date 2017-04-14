@@ -18,8 +18,10 @@ urlpatterns = [
     url(r'^createreport/', registration_views.reportform),
     url(r'^uploadfile/', report_views.upload_file),
     url(r'^displayusers/', admin_views.display_users),
+    url(r'^edituser/(.*)/', admin_views.edit_user),
 
     # defining the view for root URL
     url(r'^$', registration_views.login_view),
-    url(r'^upload/', report_views.upload_file)
+    url(r'^upload/', report_views.upload_file),
+
 ]

@@ -30,7 +30,7 @@ def login_view(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(username=request.POST['username'], password=request.POST['password'])
-            if user is not None:
+            if user is not None and user.is_active is True:
                 login(request, user)
                 return render(request, 'home.html')
             # A backend authenticated the credentials
