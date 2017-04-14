@@ -102,7 +102,7 @@ def reportform(request):
             report.name = request.POST.get("company_name", '')
             report.num = request.POST.get("company_phone", '')
             report.save()
-            return render(request, 'home.html')
+            return render(request, 'cmp_home.html')
     elif request.method == "GET":
         form = ReportForm(request.GET)
         return render(request, 'reports.html', {'form': form})
