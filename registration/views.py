@@ -101,6 +101,13 @@ def reportform(request):
             report = form.save()
             report.name = request.POST.get("company_name", '')
             report.num = request.POST.get("company_phone", '')
+            report.ceo = request.POST.get("ceo", '')
+            report.email = request.POST.get("company_email", '')
+            report.location = request.POST.get("company_location", '')
+            report.country = request.POST.get("company_country", '')
+            report.sector = request.POST.get("company_sector", '')
+            report.industry = request.POST.get("company_industry", '')
+            report.projects = request.POST.get("company_projects", '')
             report.save()
             return render(request, 'cmp_home.html')
     elif request.method == "GET":
@@ -116,7 +123,9 @@ def search(request):
     if request.method == 'POST':
         searchBar = request.POST.get('search')
 
-        reports = report.objects.filter(Q(company_name=searchBar)|Q(company_phone__contains=searchBar))
+        reports = report.objects.filter(Q(company_name__contains=searchBar)|Q(company_phone__contains=searchBar)|
+                                        Q(company_industry__contains=searchBar)|Q(company_email__contains=searchBar)|
+                                        Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
         return render(request, 'viewReports.html', {'reports': reports})
 
 # still need to put in function from somewhere import handle_uploaded_file
