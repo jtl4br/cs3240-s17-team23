@@ -11,6 +11,7 @@ from admin import views as admin_views
 from django.conf.urls import url
 from django.contrib import admin
 from admin import views as admin_views
+from chat import views as chat_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -35,5 +36,8 @@ urlpatterns = [
     url(r'^viewGroups/', creategroup_views.viewGroups),
     #url(r'^groupCreated/', creategroup_views.newGroupForm),
     #url(r'^getdata/', creategroup_views.newGroupForm),
-]
+
+    url(r'^createmessage/', chat_views.messageform),
+
+]   
 
