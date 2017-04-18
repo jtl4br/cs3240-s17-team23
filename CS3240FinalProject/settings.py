@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.postgres',
     'CS3240FinalProject',
     'registration',
+    'chat',
     'reports'
 )
 

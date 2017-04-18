@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .forms import NewGroupForm
+from .forms import NewGroupForm, LoginForm, Signup
 from django.views.decorators.csrf import csrf_exempt
 from .models import group
 from .models import group_user_pair
