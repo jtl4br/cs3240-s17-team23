@@ -94,12 +94,23 @@ def viewGroups(request):
         return render(request, 'logintemp.html', {'form': form})
 
     groups = request.user.groups.all()
-    for group in groups:
-        print(group.name)
+    
+    print(groups)
 
     return render(request, 'viewGroups.html', {'groups': groups})
 
 
+@csrf_exempt
+def leaveGroup(request, group_id):
+
+    print(group_id)
+
+
+    # Go back to appropriate home page
+    if request.user.user_type == "CMP_USR":
+        return render(request, 'cmp_home.html')
+    else:
+        return render(request, 'inv_home.html')
 
 
     # # if post request came

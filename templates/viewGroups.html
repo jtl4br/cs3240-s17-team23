@@ -8,9 +8,6 @@
 <a href="/logout" class="btn btn-primary" float="right">Logout</a>
 <br><br/>
 
-
-
-
 <br><br/>
 
 <center>
@@ -18,7 +15,7 @@
 {% for group in groups %}
     <div>
         <p>Group Name: {{ group.name }}</p>
-
+        <a href="/leaveGroup/{{ group.id }}" class="btn btn-primary" float="right">Leave Group</a>
     <br><br/>
     </div>
 {% endfor %}
