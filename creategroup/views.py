@@ -81,6 +81,22 @@ def createGroup(request):
     return render(request, 'createGroup.html', {'form': form})
 
 
+@csrf_exempt
+def viewGroups(request):
+    if 'loggedIn' not in request.session:
+        request.session['loggedIn'] = False
+    if request.session['loggedIn'] == False:
+        form = LoginForm()
+        return render(request, 'logintemp.html', {'form': form})
+
+    groups = request.user.groups.all()
+    for group in groups:
+        print(group.name)
+
+    return render(request, 'viewGroups.html', {'groups': groups})
+
+
+
 
     # # if post request came
     # if request.method == 'POST':
