@@ -103,7 +103,11 @@ def viewGroups(request):
 @csrf_exempt
 def leaveGroup(request, group_id):
 
-    print(group_id)
+    currentUser = request.user
+
+    currentUser.groups.remove(group_id)
+
+   # groupToLeave.user_set.remove(request)
 
 
     # Go back to appropriate home page
