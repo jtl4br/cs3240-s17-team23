@@ -5,6 +5,7 @@ from django.forms import ModelForm
 class MessageForm(forms.Form):
     recipient = forms.CharField(label='Recipient', max_length=25, required=True)
     content = forms.CharField(label='Content', max_length=500, required=True)
+    #sender = forms.CharField(label='Content', max_length=500, required=True)
 
 # creating our forms
 class Signup(forms.Form):

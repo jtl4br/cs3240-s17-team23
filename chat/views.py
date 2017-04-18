@@ -22,6 +22,7 @@ def messageform(request):
             new_message = message()
             new_message.message_recipient = request.POST.get("recipient")
             new_message.message_content = request.POST.get("content")
+            new_message.message_sender = request.user.username
             new_message.save()
 
             # report = form.save()
