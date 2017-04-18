@@ -8,4 +8,4 @@ class NewGroupForm(forms.Form):
     # CharField and EmailField are only two of them
     # go through the official docs for more field details
     name = forms.CharField(label='Enter a group name', max_length=100)
-    description = forms.CharField(label='Enter a group description', max_length=700)
+    users = forms.CharField(label='Enter the users to be added', max_length=700)

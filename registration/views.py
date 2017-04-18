@@ -128,6 +128,9 @@ def search(request):
                                         Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
         return render(request, 'viewReports.html', {'reports': reports})
 
+
+
+
 # still need to put in function from somewhere import handle_uploaded_file
 
 

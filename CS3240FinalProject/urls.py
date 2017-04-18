@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^$', registration_views.login_view),
     url(r'^upload/', report_views.upload_file),
 
-    url(r'^createGroup/', creategroup_views.newGroupForm),
+    url(r'^createGroup/', creategroup_views.createGroup),
     url(r'^groupCreated/', creategroup_views.newGroupForm),
     url(r'^getdata/', creategroup_views.newGroupForm),
 ]

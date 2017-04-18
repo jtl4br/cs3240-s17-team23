@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import group
 from .models import group_user_pair
 from registration.forms import LoginForm
+from django.contrib.auth.models import Group
 
 
 # Create your views here.
@@ -44,6 +45,25 @@ def newGroupForm(request):
     return render(request, 'createGroup.html', {'form': form})
 
 
+@csrf_exempt
+def createGroup(request):
+    if 'loggedIn' not in request.session:
+        request.session['loggedIn'] = False
+    if request.session['loggedIn'] == False:
+        form = LoginForm()
+        return render(request, 'logintemp.html', {'form': form})
+
+    if request.method == 'POST':
+        groupName = request.POST.get('name')
+        groupCreator = request.session['username']
+
+        new_group = Group.objects.create(name=groupName)
+        request.user.groups.add(new_group)
+        new_group.save()
+        return render(request, 'cmp_home.html')
+    else:
+        form = NewGroupForm()
+    return render(request, 'createGroup.html', {'form': form})
 
 
 
