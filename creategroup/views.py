@@ -116,6 +116,18 @@ def leaveGroup(request, group_id):
     else:
         return render(request, 'inv_home.html')
 
+@csrf_exempt
+def addUser(request, group_id):
+
+    print(group_id)
+
+    if request.method == 'POST':
+        print("Hello: ", group_id)
+        return render(request, 'addUserToGroup.html')
+    else:
+        id = group_id
+        return render(request, 'addUserToGroup.html', {'id': id})
+
 
     # # if post request came
     # if request.method == 'POST':

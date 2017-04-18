@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lokahi</title>
+    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" crossorigin="anonymous">
+<script src="https://use.fontawesome.com/ebf1c6b47e.js"></script>
+</head>
+<body>
+<a href="/home" class="btn btn-primary">Lokahi</a>
+<a href="/logout" class="btn btn-primary" float="right">Logout</a>
+<h2>Add user to group</h2>
+
+{% for group in id %}
+<form method="post" action="/addUser/{{ group }}">
+    <table>
+        <tr>
+            <td>User's username:</td>
+            <td><input type="text" name="newUser"/></td>
+        </tr>
+
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                <button>Add</button>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endfor %}
+
+</body>
+</html>

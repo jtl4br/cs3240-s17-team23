@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^createGroup/', creategroup_views.createGroup),
     url(r'^viewGroups/', creategroup_views.viewGroups),
     url(r'^leaveGroup/(?P<group_id>[0-9]+)$', creategroup_views.leaveGroup),
+    url(r'^addUser/(?P<group_id>[0-9]+)$', creategroup_views.addUser),
     #url(r'^groupCreated/', creategroup_views.newGroupForm),
     #url(r'^getdata/', creategroup_views.newGroupForm),
 

@@ -21,6 +21,10 @@ def signupform(request):
         if form.is_valid():
             if request.POST['password'] != request.POST['password2']:
                 return render(request, 'signupform.html', {'response': 'Passwords do not match', 'form': form})
+            userCheck = request.POST['username']
+            check = SiteUser.objects.filter(username=userCheck)
+            if check.exists():
+                return render(request, 'signupform.html', {'response': 'Username Taken', 'form': form})
             user = SiteUser.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
             user.first_name = request.POST['firstname']
             user.last_name = request.POST['lastname']
