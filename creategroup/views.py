@@ -66,15 +66,14 @@ def createGroup(request):
 
         storedUsers = SiteUser.objects.all() # Get all of the users who have been created
 
+        #Always add the current user, since they made the group
+        request.user.groups.add(new_group)
+
         for user in storedUsers:        # The already made users
             for name in groupUsers:     # The list of usernames entered to be added to the group
                 if user.username == name:
                     user.groups.add(new_group)
-
-
         
-        #request.user.groups.add(new_group)
-        #new_group.save()
         return render(request, 'cmp_home.html')
     else:
         form = NewGroupForm()
