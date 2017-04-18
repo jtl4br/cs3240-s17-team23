@@ -38,6 +38,7 @@ urlpatterns = [
     #url(r'^getdata/', creategroup_views.newGroupForm),
 
     url(r'^createmessage/', chat_views.messageform),
+    url(r'^viewmessages/', chat_views.viewMessages),
 
 ]   
 

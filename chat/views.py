@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from django.views.decorators.csrf import csrf_exempt
 
+from django.db.models import Q
+
 @csrf_exempt
 def messageform(request):
     if 'loggedIn' not in request.session:
@@ -13,7 +15,6 @@ def messageform(request):
     if request.session['loggedIn'] == False:
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
-
 
     if request.method == 'POST':
 
@@ -25,10 +26,6 @@ def messageform(request):
             new_message.message_sender = request.user.username
             new_message.save()
 
-            # report = form.save()
-            # report.message_recipient = request.POST.get("recipient")
-            # report.message_content = request.POST.get("content")
-            # report.save()
             return render(request, 'cmp_home.html')
 
         # Go back to appropriate home page
@@ -40,3 +37,51 @@ def messageform(request):
     elif request.method == "GET":
         form = MessageForm(request.GET)
         return render(request, 'createMessage.html', {'form': form})
+
+
+@csrf_exempt
+def viewMessages(request):
+    if 'loggedIn' not in request.session:
+        request.session['loggedIn'] = False
+    if request.session['loggedIn'] == False:
+        form = LoginForm()
+        return render(request, 'logintemp.html', {'form': form})
+
+
+    # reports = report.objects.filter(Q(company_name__contains=searchBar)|Q(company_phone__contains=searchBar)|
+    #                                     Q(company_industry__contains=searchBar)|Q(company_email__contains=searchBar)|
+    #                                     Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
+
+    recipient = request.user.username
+
+    print(recipient)
+
+    messages = message.objects.filter(Q(message_recipient__iexact=recipient))
+
+    for chat in messages:
+        print(chat.message_recipient)
+        print(chat.message_sender)
+        print(chat.message_content)
+
+    return render(request, 'viewMessages.html', {'messages': messages})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
