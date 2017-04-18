@@ -47,15 +47,11 @@ def viewMessages(request):
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
 
-
-    # reports = report.objects.filter(Q(company_name__contains=searchBar)|Q(company_phone__contains=searchBar)|
-    #                                     Q(company_industry__contains=searchBar)|Q(company_email__contains=searchBar)|
-    #                                     Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
-
     recipient = request.user.username
 
     print(recipient)
 
+    # only display message sent to the current user
     messages = message.objects.filter(Q(message_recipient__iexact=recipient))
 
     for chat in messages:
