@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import NewGroupForm, LoginForm, Signup
 from django.views.decorators.csrf import csrf_exempt
@@ -72,6 +72,7 @@ def createGroup(request):
         for user in storedUsers:        # The already made users
             for name in groupUsers:     # The list of usernames entered to be added to the group
                 if user.username == name:
+                    print("added a new person!!!!!!!")
                     user.groups.add(new_group)
         
         # Go back to appropriate home page
@@ -107,9 +108,6 @@ def leaveGroup(request, group_id):
 
     currentUser.groups.remove(group_id)
 
-   # groupToLeave.user_set.remove(request)
-
-
     # Go back to appropriate home page
     if request.user.user_type == "CMP_USR":
         return render(request, 'cmp_home.html')
@@ -119,11 +117,46 @@ def leaveGroup(request, group_id):
 @csrf_exempt
 def addUser(request, group_id):
 
-    print(group_id)
-
     if request.method == 'POST':
-        print("Hello: ", group_id)
-        return render(request, 'addUserToGroup.html')
+        name = request.POST.get('newUser')
+
+        storedUsers = SiteUser.objects.all() # Get all of the users who have been created
+
+        print("BEFORE LOOP")
+        for user in storedUsers:        # The already made users
+            if user.username == name:
+                print("MADE IT BEFORE IF: ", user.username)
+
+                group = user.groups.add(group_id)
+                for group in user.groups.all():
+                     print(group.name)
+
+               
+
+                #print("NEW GROUP: ", group)
+
+                #groups = user.groups.all()
+
+                #alreadyInGroup = False
+
+                #user.groups.add(group_id)
+
+                
+
+                # Determine if user is already in the group
+                # for group in groups:
+                #     if group.id == group_id:
+                #         alreadyInGroup = True
+
+                # if not alreadyInGroup:
+                #     user.groups.add(group_id)
+                #     print("HERE")
+                #     for group in user.groups.objects.all():
+                #         print(group.name)
+
+                
+
+        return HttpResponseRedirect('/viewGroups/')
     else:
         id = group_id
         return render(request, 'addUserToGroup.html', {'id': id})

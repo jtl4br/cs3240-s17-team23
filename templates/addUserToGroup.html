@@ -13,6 +13,7 @@
 
 {% for group in id %}
 <form method="post" action="/addUser/{{ group }}">
+{% endfor %}
     <table>
         <tr>
             <td>User's username:</td>
@@ -29,7 +30,7 @@
         </tr>
     </table>
 </form>
-{% endfor %}
+
 
 </body>
 </html>
