@@ -127,39 +127,35 @@ def addUser(request, group_id):
             if user.username == name:
                 print("MADE IT BEFORE IF: ", user.username)
 
-                group = user.groups.add(group_id)
-                for group in user.groups.all():
-                     print(group.name)
-
-               
-
-                #print("NEW GROUP: ", group)
-
-                #groups = user.groups.all()
-
-                #alreadyInGroup = False
-
-                #user.groups.add(group_id)
-
-                
-
-                # Determine if user is already in the group
-                # for group in groups:
+                alreadyInGroup = False
+                # print()
+                # for group in user.groups.all():
                 #     if group.id == group_id:
                 #         alreadyInGroup = True
 
-                # if not alreadyInGroup:
-                #     user.groups.add(group_id)
-                #     print("HERE")
-                #     for group in user.groups.objects.all():
-                #         print(group.name)
+                print("Already in group?: ", alreadyInGroup)
 
+                group = user.groups.add(group_id)
+                for group in user.groups.all():
+                     print(group.name)
                 
 
         return HttpResponseRedirect('/viewGroups/')
     else:
         id = group_id
         return render(request, 'addUserToGroup.html', {'id': id})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     # # if post request came

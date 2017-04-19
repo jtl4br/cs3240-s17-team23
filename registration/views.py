@@ -61,7 +61,6 @@ def login_view(request):
                 return render(request, 'logintemp.html', {'response': 'Invalid Login', 'form': form})
         # No backend authenticated the credentials
 
-
     else:
         if 'loggedIn' not in request.session:
             request.session['loggedIn'] = False
@@ -130,12 +129,31 @@ def search(request):
         reports = report.objects.filter(Q(company_name__contains=searchBar)|Q(company_phone__contains=searchBar)|
                                         Q(company_industry__contains=searchBar)|Q(company_email__contains=searchBar)|
                                         Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
+
         return render(request, 'viewReports.html', {'reports': reports})
 
 
 
+### FUNCTIONS FOR INTERACTING WITH THE FDA ###
+from django.http import JsonResponse
+from django.core import serializers
+import json
 
-# still need to put in function from somewhere import handle_uploaded_file
+def login_view_API(request):
+    context = {}
+    if request.method == 'POST':
+        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+        if user is not None:
+            #if user.user_type != None:
+            serial = serializers.serialize("json", {"passed": "y"})
+            context['Response'] = json.loads(serial)
+            return JsonResponse(context, safe=False)
+
+            # A backend authenticated the credentials
+        else:
+            context['Response'] = 'Failed Login'
+            return JsonResponse(context, safe=False)
+
 
 
 

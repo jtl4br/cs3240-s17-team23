@@ -36,11 +36,14 @@ urlpatterns = [
     url(r'^viewGroups/', creategroup_views.viewGroups),
     url(r'^leaveGroup/(?P<group_id>[0-9]+)$', creategroup_views.leaveGroup),
     url(r'^addUser/(?P<group_id>[0-9]+)$', creategroup_views.addUser),
-    #url(r'^groupCreated/', creategroup_views.newGroupForm),
-    #url(r'^getdata/', creategroup_views.newGroupForm),
 
     url(r'^createmessage/', chat_views.messageform),
     url(r'^viewmessages/', chat_views.viewMessages),
+
+    ### URLs FOR THE API ###
+    url(r'^login_api/', registration_views.login_view_API)
+
+
 
 ]   
 
