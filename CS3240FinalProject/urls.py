@@ -5,6 +5,7 @@ from django.contrib import admin
 # we need to create views.py
 from . import views
 from registration import views as registration_views
+from FDA import views as FDA_views
 from reports import views as report_views
 from creategroup import views as creategroup_views
 from admin import views as admin_views
@@ -41,8 +42,8 @@ urlpatterns = [
     url(r'^viewmessages/', chat_views.viewMessages),
 
     ### URLs FOR THE FDA ###
-    url(r'^login_FDA/', registration_views.login_view_FDA),
-    url(r'^viewReports_FDA/', registration_views.login_view_FDA),
+    url(r'^login_FDA/', FDA_views.login_view_FDA),
+    url(r'^viewReports_FDA/', FDA_views.viewReports_FDA),
 
 
 

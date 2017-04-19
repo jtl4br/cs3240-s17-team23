@@ -134,37 +134,6 @@ def search(request):
 
 
 
-### FUNCTIONS FOR INTERACTING WITH THE FDA ###
-from django.http import JsonResponse
-from django.core import serializers
-import json
-
-def login_view_FDA(request):
-    context = {}
-    if request.method == 'POST':
-        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
-        if user is not None:
-            #if user.user_type != None:
-            serial = serializers.serialize("json", {"passed": "y"})
-            context['Response'] = json.loads(serial)
-            return JsonResponse(context, safe=False)
-
-            # A backend authenticated the credentials
-        else:
-            context['Response'] = 'Failed Login'
-            return JsonResponse(context, safe=False)
-
-def viewReports_FDA(request):
-    context = {}
-    reports = report.objects.all()
-
-    if request.method == 'POST':
-        serial = serializers.serialize("json", reports)
-        context['Response'] = json.loads(serial)
-        return JsonResponse(context, safe=False)
-
-
-
 
 
 

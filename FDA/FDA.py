@@ -9,7 +9,7 @@ def login():
 	return r.json()
 
 def viewReports():
-	r = requests.post('http://127.0.0.1:8000/login_FDA/')
+	r = requests.post('http://127.0.0.1:8000/view_reports_FDA/')
 
 	return r.json()
 
