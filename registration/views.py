@@ -139,15 +139,30 @@ def advancedSearch(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         number = request.POST.get('number')
+        industry = request.POST.get('industry')
+        email = request.POST.get('email')
+        location = request.POST.get('location')
+        projects = request.POST.get('projects')
 
         set = report.objects.filter()
 
         if name != None:
             set = set & report.objects.filter(company_name__contains=name)
 
-
         if number != None:
             set = set & report.objects.filter(company_phone__contains=number)
+
+        if industry != None:
+            set = set & report.objects.filter(company_industry__contains=industry)
+
+        if email != None:
+            set = set & report.objects.filter(company_email__contains=email)
+
+        if location != None:
+            set = set & report.objects.filter(company_location__contains=location)
+
+        if projects != None:
+            set = set & report.objects.filter(company_projects__contains=projects)
 
         return render(request, 'viewReports.html', {'reports': set})
 
