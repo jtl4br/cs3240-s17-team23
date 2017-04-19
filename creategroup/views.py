@@ -3,9 +3,15 @@ from django.http import HttpResponse
 from django.template import loader
 from .forms import NewGroupForm
 from django.views.decorators.csrf import csrf_exempt
+#from .models import Group
 from .models import group
 from .models import group_user_pair
 from registration.forms import LoginForm
+
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from .models import tempModel
+
 
 
 # Create your views here.
@@ -35,6 +41,14 @@ def newGroupForm(request):
             new_group.creator_name = ""
             new_group.creator_username = creator
             new_group.save()
+            new_django_group = Group.objects.get_or_create(name='new_group')
+            #ct = ContentType.objects.get_for_model(tempModel)
+            #permission = Permission.objects.create(codename='can_add_tempModel',
+            #                                       name='Can add tempModel',
+            #                                       content_type=ct)
+            #new_django_group.permissions.add(permission)
+            #new_django_group.save()
+            #new_group.clear()
             #return render(request, 'groupCreated.html')
             template = loader.get_template('groupCreated.html')
             return HttpResponse(template.render(context, request))

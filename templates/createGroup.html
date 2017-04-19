@@ -7,17 +7,58 @@
 <script src="https://use.fontawesome.com/ebf1c6b47e.js"></script>
 </head>
 <body>
-<a href="/home" class="btn btn-primary">Lokahi</a>
-<a href="/logout" class="btn btn-primary" float="right">Logout</a>
-<h2>Create a New Group!</h2>
-<form method="post" action="/groupCreated/">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/home">Lokahi</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li><a href="/home">Dashboard</a></li>
+        <li><a href="/createreport">Reports</a></li>
+        <li><a href="/createGroup">Groups</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--<a href="/home" class="btn btn-primary">Lokahi</a>
+<a href="/logout" class="btn btn-primary" float="right">Logout</a>-->
+
+<h2>Groups!</h2>
+
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Create a New Group</h3>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="/groupCreated/">
     <table>
         <tr>
-            <td>Enter a group name:</td>
+            <td>Enter a group name </td>
             <td><input type="text" name="name"/></td>
         </tr>
         <tr>
-            <td>Enter a group description:</td>
+            <td>Enter a group description </td>
             <td><input type="text" name="description"/></td>
         </tr>
         <tr>
@@ -30,5 +71,12 @@
         </tr>
     </table>
 </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 </body>
 </html>

@@ -11,3 +11,9 @@ class group(models.Model):
 class group_user_pair(models.Model):
     gup_group_name = models.CharField(max_length=50)
     gup_username = models.IntegerField()
+
+class tempModel(models.Model):
+    tempModel_name = models.CharField(max_length=50)
+    permissions = (
+        ("create tempModel", "can create tempModel"),
+    )

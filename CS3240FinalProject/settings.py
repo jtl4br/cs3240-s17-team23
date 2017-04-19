@@ -38,7 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.postgres',
     'CS3240FinalProject',
     'registration',
-    'reports'
+    'reports',
+    'phonenumber_field',
+    'django_countries'
 )
 
 MIDDLEWARE_CLASSES = (
