@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^displayusers/', admin_views.display_users),
     url(r'^edituser/(.*)/', admin_views.edit_user),
     url(r'^search/', registration_views.search),
+    url(r'^editreport/(.*)/', admin_views.edit_form),
 
     url(r'^advancedSearch/', registration_views.advancedSearch),
 

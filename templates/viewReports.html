@@ -34,6 +34,10 @@
         <p>Location : {{ report.company_location }}</p>
         <p>Projects : {{ report.company_projects }}</p>
 
+        {% if user.admin_status %}
+            <a class="btn btn-primary btn-sml" href="/editreport/{{ report.pk }}/">Edit Report</a>
+        {% endif %}
+
     <br><br/>
     </div>
 {% endfor %}

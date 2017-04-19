@@ -113,11 +113,17 @@ def reportform(request):
             report.projects = request.POST.get("company_projects", '')
             report.save()
             return render(request, 'cmp_home.html')
-    elif request.method == "GET":
+        else:
+            return render(request, 'reports.html', {'form': form})
+    else:
         form = ReportForm(request.GET)
         return render(request, 'reports.html', {'form': form})
 
 def getReports(request):
+    for each in report.objects.all():
+        if each.delete_item is True:
+            each.delete()
+
     reports = report.objects.all()
     return render(request, 'viewReports.html', {'reports': reports})
 
