@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^edituser/(.*)/', admin_views.edit_user),
     url(r'^search/', registration_views.search),
 
+    url(r'^advancedSearch/', registration_views.advancedSearch),
+
     # defining the view for root URL
     url(r'^$', registration_views.login_view),
     url(r'^upload/', report_views.upload_file),

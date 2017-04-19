@@ -133,6 +133,33 @@ def search(request):
         return render(request, 'viewReports.html', {'reports': reports})
 
 
+@csrf_exempt
+def advancedSearch(request):
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        number = request.POST.get('number')
+
+        set = report.objects.filter()
+
+        if name != None:
+            set = set & report.objects.filter(company_name__contains=name)
+
+
+        if number != None:
+            set = set & report.objects.filter(company_phone__contains=number)
+
+        return render(request, 'viewReports.html', {'reports': set})
+
+    else:
+        return render(request, 'advancedSearch.html')
+
+
+
+    
+
+
+
 
 
 
