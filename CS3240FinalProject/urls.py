@@ -40,8 +40,9 @@ urlpatterns = [
     url(r'^createmessage/', chat_views.messageform),
     url(r'^viewmessages/', chat_views.viewMessages),
 
-    ### URLs FOR THE API ###
-    url(r'^login_api/', registration_views.login_view_API)
+    ### URLs FOR THE FDA ###
+    url(r'^login_FDA/', registration_views.login_view_FDA),
+    url(r'^viewReports_FDA/', registration_views.login_view_FDA),
 
 
 
