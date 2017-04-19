@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import NewGroupForm, LoginForm, Signup
 from django.views.decorators.csrf import csrf_exempt
@@ -72,6 +72,7 @@ def createGroup(request):
         for user in storedUsers:        # The already made users
             for name in groupUsers:     # The list of usernames entered to be added to the group
                 if user.username == name:
+                    print("added a new person!!!!!!!")
                     user.groups.add(new_group)
         
         # Go back to appropriate home page
@@ -107,39 +108,40 @@ def leaveGroup(request, group_id):
 
     currentUser.groups.remove(group_id)
 
-   # groupToLeave.user_set.remove(request)
-
-
     # Go back to appropriate home page
     if request.user.user_type == "CMP_USR":
         return render(request, 'cmp_home.html')
     else:
         return render(request, 'inv_home.html')
 
+@csrf_exempt
+def addUser(request, group_id):
 
-    # # if post request came
-    # if request.method == 'POST':
-    #     # getting values from post
-    #     name = request.POST.get('name')
-    #     description = request.POST.get('description')
-    #     creator = "";
-    #     #creator = session.username
-    #
-    #
-    #     # adding the values in a context variable
-    #     context = {
-    #         'name': name,
-    #         'description': description,
-    #         'creator': creator,
-    #     }
-    #
-    #     # getting our showdata template
-    #     template = loader.get_template('groupCreated.html')
-    #
-    #     # returing the template
-    #     return HttpResponse(template.render(context, request))
-    # else:
-    #     # if post request is not true
-    #     # returing the form template
-    #     template = loader.get_template('createGroup.html')
-    #     return HttpResponse(template.render())
+    if request.method == 'POST':
+        name = request.POST.get('newUser')
+
+        storedUsers = SiteUser.objects.all() # Get all of the users who have been created
+
+        print("BEFORE LOOP")
+        for user in storedUsers:        # The already made users
+            if user.username == name:
+                print("MADE IT BEFORE IF: ", user.username)
+
+                alreadyInGroup = False
+                # print()
+                # for group in user.groups.all():
+                #     if group.id == group_id:
+                #         alreadyInGroup = True
+
+                print("Already in group?: ", alreadyInGroup)
+
+                group = user.groups.add(group_id)
+                for group in user.groups.all():
+                     print(group.name)
+                
+
+        return HttpResponseRedirect('/viewGroups/')
+    else:
+        id = group_id
+        return render(request, 'addUserToGroup.html', {'id': id})
+

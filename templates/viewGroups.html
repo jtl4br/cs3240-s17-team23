@@ -16,6 +16,8 @@
     <div>
         <p>Group Name: {{ group.name }}</p>
         <a href="/leaveGroup/{{ group.id }}" class="btn btn-primary" float="right">Leave Group</a>
+        <a href="/addUser/{{ group.id }}" class="btn btn-primary" float="left">Add user</a>
+
     <br><br/>
     </div>
 {% endfor %}

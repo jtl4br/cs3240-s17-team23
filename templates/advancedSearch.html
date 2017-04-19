@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lokahi</title>
+    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" crossorigin="anonymous">
+<script src="https://use.fontawesome.com/ebf1c6b47e.js"></script>
+</head>
+<body>
+<a href="/home" class="btn btn-primary">Lokahi</a>
+<a href="/logout" class="btn btn-primary" float="right">Logout</a>
+<h2>Advanced Search</h2>
+
+<form method="post" action="/advancedSearch/">
+    <table>
+        <tr>
+            <td>Company Name:</td>
+            <td><input type="text" name="name"/></td>
+        </tr>
+        <tr>
+            <td>Phone Number:</td>
+            <td><input type="text" name="number"/></td>
+        </tr>
+        <tr>
+            <td>Industry:</td>
+            <td><input type="text" name="indsutry"/></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email"/></td>
+        </tr>
+        <tr>
+            <td>Location:</td>
+            <td><input type="text" name="location"/></td>
+        </tr>
+         <tr>
+            <td>Projects:</td>
+            <td><input type="text" name="projects"/></td>
+        </tr>
+        
+
+            <td>
+                <button>Search</button>
+            </td>
+    </table>
+</form>
+
+
+</body>
+</html>

@@ -27,6 +27,7 @@ class report(models.Model):
     company_sector = models.CharField(max_length=25, default='DEFAULT SECTOR')
     company_industry = models.CharField(max_length=25, default='DEFAULT INDUSTRY')
     company_projects = models.CharField(max_length=25, default='DEFAULT PROJECT')
+    delete_item = models.BooleanField(default = False)
 
     class Meta:
     	permissions = (

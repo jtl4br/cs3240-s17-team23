@@ -12,6 +12,10 @@
     <input type="text" name="search" placeholder="Search..">
 </form>
 
+<br><br/>
+
+<a href="/advancedSearch" class="btn btn-primary" float="right">Advanced Search</a>
+
 
 <br><br/>
 
@@ -29,6 +33,10 @@
         <p>Industry : {{ report.company_industry }}</p>
         <p>Location : {{ report.company_location }}</p>
         <p>Projects : {{ report.company_projects }}</p>
+
+        {% if user.admin_status %}
+            <a class="btn btn-primary btn-sml" href="/editreport/{{ report.pk }}/">Edit Report</a>
+        {% endif %}
 
     <br><br/>
     </div>
