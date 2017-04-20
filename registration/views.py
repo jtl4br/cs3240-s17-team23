@@ -121,6 +121,7 @@ def reportform(request):
         return render(request, 'reports.html', {'form': form})
 
 def getReports(request):
+    user = request.user
     for each in report.objects.all():
         if each.delete_item is True:
             each.delete()
@@ -130,13 +131,14 @@ def getReports(request):
     listReports = []
 
     for rep in reports:
-        if rep.private == False:
+        if rep.private == False or user.admin_status:
             listReports.append(rep)
 
     return render(request, 'viewReports.html', {'reports': listReports})
 
 @csrf_exempt
 def search(request):
+    user = request.user
     if request.method == 'POST':
         searchBar = request.POST.get('search')
 
@@ -146,7 +148,7 @@ def search(request):
 
         finalListReports = []
         for rep in reports:
-            if rep.private == False:
+            if rep.private == False or user.admin_status:
                 finalListReports.append(rep)
 
         return render(request, 'viewReports.html', {'reports': finalListReports})
@@ -154,7 +156,7 @@ def search(request):
 
 @csrf_exempt
 def advancedSearch(request):
-
+    user = request.user
     if request.method == 'POST':
         name = request.POST.get('name')
         number = request.POST.get('number')
@@ -185,7 +187,7 @@ def advancedSearch(request):
 
         finalListReports = []
         for rep in set:
-            if rep.private == False:
+            if rep.private == False or user.admin_status:
                 finalListReports.append(rep)
 
         return render(request, 'viewReports.html', {'reports': finalListReports})
