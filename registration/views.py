@@ -113,7 +113,6 @@ def reportform(request):
             report.industry = request.POST.get("company_industry", '')
             report.projects = request.POST.get("company_projects", '')
             report.private = request.POST.get("private", '')
-            report.save()
             return render(request, 'cmp_home.html')
         else:
             return render(request, 'reports.html', {'form': form})
@@ -127,7 +126,14 @@ def getReports(request):
             each.delete()
 
     reports = report.objects.all()
-    return render(request, 'viewReports.html', {'reports': reports})
+
+    listReports = []
+
+    for rep in reports:
+        if rep.private == False:
+            listReports.append(rep)
+
+    return render(request, 'viewReports.html', {'reports': listReports})
 
 @csrf_exempt
 def search(request):
@@ -138,7 +144,12 @@ def search(request):
                                         Q(company_industry__contains=searchBar)|Q(company_email__contains=searchBar)|
                                         Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
 
-        return render(request, 'viewReports.html', {'reports': reports})
+        finalListReports = []
+        for rep in reports:
+            if rep.private == False:
+                finalListReports.append(rep)
+
+        return render(request, 'viewReports.html', {'reports': finalListReports})
 
 
 @csrf_exempt
@@ -172,7 +183,12 @@ def advancedSearch(request):
         if projects != None:
             set = set & report.objects.filter(company_projects__contains=projects)
 
-        return render(request, 'viewReports.html', {'reports': set})
+        finalListReports = []
+        for rep in set:
+            if rep.private == False:
+                finalListReports.append(rep)
+
+        return render(request, 'viewReports.html', {'reports': finalListReports})
 
     else:
         return render(request, 'advancedSearch.html')
