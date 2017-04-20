@@ -41,6 +41,14 @@ def signupform(request):
     return render(request, 'signupform.html', {'form': form})
 
 def login_view(request):
+    check = SiteUser.objects.filter(username='Admin')
+    if not check.exists():
+        user = SiteUser.objects.create_user('Admin', 'admin@gmail.com', 'Admin')
+        user.first_name = 'Administrator'
+        user.last_name = 'Account'
+        user.user_type = 'INV_USR'
+        user.admin_status = True
+        user.save()
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
