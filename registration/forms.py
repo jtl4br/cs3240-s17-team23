@@ -25,7 +25,7 @@ class ReportForm(ModelForm):
     class Meta:
         model = report
         fields = ['company_name', 'company_phone', 'ceo', 'company_email', 'company_location', 'company_country',
-                    'company_sector', 'company_industry', 'company_projects']
+                    'company_sector', 'company_industry', 'company_projects', 'private']
 
 
 

@@ -102,6 +102,7 @@ def reportform(request):
         form = ReportForm(request.POST)
         if form.is_valid():
             report = form.save()
+            report.username = request.user.username
             report.name = request.POST.get("company_name", '')
             report.num = request.POST.get("company_phone", '')
             report.ceo = request.POST.get("ceo", '')
@@ -111,6 +112,7 @@ def reportform(request):
             report.sector = request.POST.get("company_sector", '')
             report.industry = request.POST.get("company_industry", '')
             report.projects = request.POST.get("company_projects", '')
+            report.private = request.POST.get("private", '')
             report.save()
             return render(request, 'cmp_home.html')
         else:
