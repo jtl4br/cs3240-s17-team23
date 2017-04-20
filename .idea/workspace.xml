@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1018bdcb-2d9d-416e-9936-4f947c652e6e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chat/views.py" afterPath="$PROJECT_DIR$/chat/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creategroup/views.py" afterPath="$PROJECT_DIR$/creategroup/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Userdisplay.html" afterPath="$PROJECT_DIR$/templates/Userdisplay.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/addUserToGroup.html" afterPath="$PROJECT_DIR$/templates/addUserToGroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/advancedSearch.html" afterPath="$PROJECT_DIR$/templates/advancedSearch.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/cmp_home.html" afterPath="$PROJECT_DIR$/templates/cmp_home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/createGroup.html" afterPath="$PROJECT_DIR$/templates/createGroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/createMessage.html" afterPath="$PROJECT_DIR$/templates/createMessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/editform.html" afterPath="$PROJECT_DIR$/templates/editform.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/edituser.html" afterPath="$PROJECT_DIR$/templates/edituser.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/groupCreated.html" afterPath="$PROJECT_DIR$/templates/groupCreated.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/home.html" afterPath="$PROJECT_DIR$/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/inv_home.html" afterPath="$PROJECT_DIR$/templates/inv_home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/reports.html" afterPath="$PROJECT_DIR$/templates/reports.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/upload.html" afterPath="$PROJECT_DIR$/templates/upload.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/viewGroups.html" afterPath="$PROJECT_DIR$/templates/viewGroups.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/viewMessages.html" afterPath="$PROJECT_DIR$/templates/viewMessages.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/viewReports.html" afterPath="$PROJECT_DIR$/templates/viewReports.html" />
-    </list>
+    <list default="true" id="1018bdcb-2d9d-416e-9936-4f947c652e6e" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -660,7 +640,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12371889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
