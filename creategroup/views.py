@@ -98,8 +98,13 @@ def viewGroups(request):
         return render(request, 'logintemp.html', {'form': form})
 
     groups = request.user.groups.all()
+
     
     print(groups)
+    groups.noGroups = True
+    for g in groups:
+        groups.noGroups = False
+        break
 
     return render(request, 'viewGroups.html', {'groups': groups})
 

@@ -54,7 +54,10 @@ def viewMessages(request):
     # only display message sent to the current user
     messages = message.objects.filter(Q(message_recipient__iexact=recipient))
 
+    messages.noMessages = True
+
     for chat in messages:
+        messages.noMessages = False
         print(chat.message_recipient)
         print(chat.message_sender)
         print(chat.message_content)
