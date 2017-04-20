@@ -2,15 +2,10 @@
 from django import forms
 from django.forms import ModelForm
 
-
-# creating our forms
-class NewGroupForm(forms.Form):
-    # django gives a number of predefined fields
-    # CharField and EmailField are only two of them
-    # go through the official docs for more field details
-    name = forms.CharField(label='Enter a group name', max_length=100)
-    users = forms.CharField(label='Enter the users to be added', max_length=700)
-
+class MessageForm(forms.Form):
+    recipient = forms.CharField(label='Recipient', max_length=25, required=True)
+    content = forms.CharField(label='Content', max_length=500, required=True)
+    #sender = forms.CharField(label='Content', max_length=500, required=True)
 
 # creating our forms
 class Signup(forms.Form):

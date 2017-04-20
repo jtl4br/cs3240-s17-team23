@@ -21,6 +21,10 @@ def signupform(request):
         if form.is_valid():
             if request.POST['password'] != request.POST['password2']:
                 return render(request, 'signupform.html', {'response': 'Passwords do not match', 'form': form})
+            userCheck = request.POST['username']
+            check = SiteUser.objects.filter(username=userCheck)
+            if check.exists():
+                return render(request, 'signupform.html', {'response': 'Username Taken', 'form': form})
             user = SiteUser.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
             user.first_name = request.POST['firstname']
             user.last_name = request.POST['lastname']
@@ -56,7 +60,6 @@ def login_view(request):
             else:
                 return render(request, 'logintemp.html', {'response': 'Invalid Login', 'form': form})
         # No backend authenticated the credentials
-
 
     else:
         if 'loggedIn' not in request.session:
@@ -126,9 +129,51 @@ def search(request):
         reports = report.objects.filter(Q(company_name__contains=searchBar)|Q(company_phone__contains=searchBar)|
                                         Q(company_industry__contains=searchBar)|Q(company_email__contains=searchBar)|
                                         Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
+
         return render(request, 'viewReports.html', {'reports': reports})
 
-# still need to put in function from somewhere import handle_uploaded_file
+
+@csrf_exempt
+def advancedSearch(request):
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        number = request.POST.get('number')
+        industry = request.POST.get('industry')
+        email = request.POST.get('email')
+        location = request.POST.get('location')
+        projects = request.POST.get('projects')
+
+        set = report.objects.filter()
+
+        if name != None:
+            set = set & report.objects.filter(company_name__contains=name)
+
+        if number != None:
+            set = set & report.objects.filter(company_phone__contains=number)
+
+        if industry != None:
+            set = set & report.objects.filter(company_industry__contains=industry)
+
+        if email != None:
+            set = set & report.objects.filter(company_email__contains=email)
+
+        if location != None:
+            set = set & report.objects.filter(company_location__contains=location)
+
+        if projects != None:
+            set = set & report.objects.filter(company_projects__contains=projects)
+
+        return render(request, 'viewReports.html', {'reports': set})
+
+    else:
+        return render(request, 'advancedSearch.html')
+
+
+
+    
+
+
 
 
 

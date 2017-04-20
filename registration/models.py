@@ -22,13 +22,14 @@ class SiteUser(AbstractUser):
 
 class report(models.Model):
     company_name = models.CharField(max_length=50)
-    company_phone = PhoneNumberField()
-    #company_phone = models.CharField(max_length=25)
+    #company_phone = PhoneNumberField()
+    company_phone = models.CharField(max_length=25)
     ceo = models.CharField(max_length=25, default='DEFAULT CEO')
     #company_email = models.CharField(max_length=25, default='DEFAULT EMAIL')
     company_email = models.EmailField(max_length=100, default='DEFAULT EMAIL')
     company_location = models.CharField(max_length=25, default='DEFAULT LOC')
-    company_country = CountryField() #models.CharField(max_length=25, default='DEFAULT COUNTRY')
+    company_country = models.CharField(max_length=25, default='DEFAULT COUNTRY')
+    #CountryField(default='US')
     company_sector = models.CharField(max_length=25, default='DEFAULT SECTOR')
     company_industry = models.CharField(max_length=25, default='DEFAULT INDUSTRY')
     company_projects = models.CharField(max_length=25, default='DEFAULT PROJECT')

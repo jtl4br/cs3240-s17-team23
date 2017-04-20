@@ -51,26 +51,28 @@
               <h3 class="panel-title">Create a New Group</h3>
             </div>
             <div class="panel-body">
-                <form method="post" action="/groupCreated/">
-    <table>
-        <tr>
-            <td>Enter a group name </td>
-            <td><input type="text" name="name"/></td>
-        </tr>
-        <tr>
-            <td>Enter a group description </td>
-            <td><input type="text" name="description"/></td>
-        </tr>
-        <tr>
-            <td>
+                <form method="post" action="/createGroup/">
+                    <table>
+                        <tr>
+                            <td>Enter a group name &nbsp;</td>
+                            <td><input type="text" name="name"/></td>
+                        </tr>
+                        <tr>
+                            <!--<td>Enter a group description </td>
+                            <td><input type="text" name="description"/></td> -->
+                            <td>Enter users to be added &nbsp;</td>
+                            <td><input type="text" name="users"/></td>
+                        </tr>
+                        <tr>
+                            <td>
 
-            </td>
-            <td>
-                <button>Submit Form</button>
-            </td>
-        </tr>
-    </table>
-</form>
+                            </td>
+                            <td>
+                                <button>Create Group</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
           </div>
         </div>

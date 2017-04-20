@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<a href="/home" class="btn btn-primary">Lokahi</a>
+<a href="/logout" class="btn btn-primary" float="right">Logout</a>
+<br><br/>
+
+<br><br/>
+
+<center>
+
+{% for message in messages %}
+    <div>
+        <p>Message Sender: {{ message.message_sender }}</p>
+        <p>Message Content: {{ message.message_content }}</p>
+    <br><br/>
+    </div>
+{% endfor %}
+
+</center>
+
+<link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" crossorigin="anonymous">
+<script src="https://use.fontawesome.com/ebf1c6b47e.js"></script>
+
+</body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</html>

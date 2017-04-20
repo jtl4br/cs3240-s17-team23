@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CS3240FinalProject.settings")
+#os.environ['DJANGO_SETTINGS_MODULE'] = "CS3240FinalProject.settings"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -40,7 +41,8 @@ INSTALLED_APPS = (
     'registration',
     'reports',
     'phonenumber_field',
-    'django_countries'
+    'django_countries',
+    'chat'
 )
 
 MIDDLEWARE_CLASSES = (

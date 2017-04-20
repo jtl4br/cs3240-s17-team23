@@ -10,7 +10,7 @@ class group(models.Model):
 
 class group_user_pair(models.Model):
     gup_group_name = models.CharField(max_length=50)
-    gup_username = models.IntegerField()
+    gup_username = models.CharField(max_length=50)
 
 class tempModel(models.Model):
     tempModel_name = models.CharField(max_length=50)
