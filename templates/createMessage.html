@@ -7,28 +7,75 @@
 <script src="https://use.fontawesome.com/ebf1c6b47e.js"></script>
 </head>
 <body>
-<a href="/home" class="btn btn-primary">Lokahi</a>
-<a href="/logout" class="btn btn-primary" float="right">Logout</a>
-<h2>Create a New Group!</h2>
-<form method="post" action="/createmessage/">
-    <table>
-        <tr>
-            <td>Recipient:</td>
-            <td><input type="text" name="recipient"/></td>
-        </tr>
-        <tr>
-            <td>Message Content:</td>
-            <td><input type="text" name="content"/></td>
-        </tr>
-        <tr>
-            <td>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/home">Lokahi</a>
+    </div>
 
-            </td>
-            <td>
-                <button>Send</button>
-            </td>
-        </tr>
-    </table>
-</form>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li><a href="/home">Dashboard</a></li>
+        <li><a href="/createreport">Reports</a></li>
+        <li><a href="/viewGroups">Groups</a></li>
+          <li><a href="/viewmessages">Messages</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<h2> &nbsp; Messages</h2>
+
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <center>
+              <h3 class="panel-title">Send a New Message</h3>
+                    </center>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="/createmessage/">
+                    <table>
+                        <tr>
+                            <td>Recipient: &nbsp;</td>
+                            <td><input type="text" name="recipient"/></td>
+                        </tr>
+                        <tr>
+                            <td>Message Content: &nbsp;</td>
+                            <td><input type="text" name="content"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                <button>Send</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 </html>

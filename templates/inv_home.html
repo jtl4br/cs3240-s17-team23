@@ -29,7 +29,8 @@
       <ul class="nav navbar-nav">
         <li><a href="/home">Dashboard</a></li>
         <li><a href="/createreport">Reports</a></li>
-        <li><a href="/createGroup">Groups</a></li>
+        <li><a href="/viewGroups">Groups</a></li>
+          <li><a href="/viewmessages">Messages</a></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -43,39 +44,46 @@
     </div>
   </div>
 </nav>
-<h2>Investor Home Page Placeholder</h2>
+<h2>&nbsp; Investor Dashboard</h2>
 
-
+<div>
+<a href="/createreport">
+<div class="panel-body center" style="float:left; width:12%">
+    <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
+    <p>Reports</p>
+</div>
+</a>
+    <a href="/viewreports">
+<div class="panel-body center" style="float:left; width:12%">
+    <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
+    <p>View Reports</p>
+</div>
 <a href="/createGroup">
-<div class="panel-body center">
+<div class="panel-body center" style="float:left; width:12%">
     <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
     <p>Create a Group</p>
 </div>
 </a>
-
-<a href="/viewreports">
-<div class="panel-body center">
-    <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
-    <p>View Reports</p>
-</div>
 <a href="/viewGroups">
-<div class="panel-body center">
+<div class="panel-body center" style="float:left; width:12%">
     <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
     <p>View Your Groups</p>
 </div>
 </a>
 <a href="/createmessage">
-<div class="panel-body center">
+<div class="panel-body center" style="float:left; width:12%">
     <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
     <p>Send Message</p>
 </div>
 </a>
 <a href="/viewmessages">
-<div class="panel-body center">
+<div class="panel-body center" style="float:left; width:12%">
     <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
-    <p>View messages</p>
+    <p>View Messages</p>
 </div>
 </a>
+</div>
+
 
 {% if user.admin_status %}
     <a class="btn btn-primary btn-lg" href="/displayusers">View Site Users</a>
