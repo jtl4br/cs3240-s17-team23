@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import Signup, LoginForm, ReportForm
-from .models import SiteUser, report
+from .models import SiteUser, report, UserFiles
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from django.views.decorators.csrf import csrf_exempt
+import datetime
 
 from django.db.models import Q
 
@@ -99,7 +100,8 @@ def reportform(request):
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
     if request.method == 'POST':
-        form = ReportForm(request.POST)
+        form = ReportForm(request.POST, request.FILES)
+        print(form.errors)
         if form.is_valid():
             report = form.save()
             report.username = request.user.username
@@ -113,6 +115,15 @@ def reportform(request):
             report.industry = request.POST.get("company_industry", '')
             report.projects = request.POST.get("company_projects", '')
             report.private = request.POST.get("private", '')
+            report.timestamp = datetime.datetime.now()
+            report.save()
+            files = request.FILES.getlist('file_field')
+            for f in files:
+                file = UserFiles.objects.create(file=f)
+                report.files.add(file)
+                file.save()
+            report.save()
+            print(report.timestamp)
             return render(request, 'cmp_home.html')
         else:
             return render(request, 'reports.html', {'form': form})

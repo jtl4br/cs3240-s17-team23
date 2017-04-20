@@ -19,11 +19,16 @@ class SiteUser(AbstractUser):
     )
     admin_status = models.BooleanField(default=0)
 
+class UserFiles(models.Model):
+    #user = models.OneToOneField(User)
+    file = models.FileField(upload_to='files/users/user.username/%Y_%m_%d/')
 
 class report(models.Model):
+    timestamp = models.DateTimeField(null=True)
     username = models.CharField(max_length=150)
+    files = models.ManyToManyField(UserFiles)
     company_name = models.CharField(max_length=50)
-    company_phone = PhoneNumberField()
+    company_phone = PhoneNumberField(blank = True)
     #company_phone = models.CharField(max_length=25)
     ceo = models.CharField(max_length=25, default='DEFAULT CEO')
     #company_email = models.CharField(max_length=25, default='DEFAULT EMAIL')

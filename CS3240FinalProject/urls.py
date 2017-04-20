@@ -3,6 +3,8 @@ from django.contrib import admin
 
 # importing views
 # we need to create views.py
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 from registration import views as registration_views
 from FDA import views as FDA_views
@@ -50,5 +52,9 @@ urlpatterns = [
 
 
 
-]   
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
