@@ -21,6 +21,7 @@ class SiteUser(AbstractUser):
 
 
 class report(models.Model):
+    username = models.CharField(max_length=150)
     company_name = models.CharField(max_length=50)
     #company_phone = PhoneNumberField()
     company_phone = models.CharField(max_length=25)
@@ -33,6 +34,8 @@ class report(models.Model):
     company_sector = models.CharField(max_length=25, default='DEFAULT SECTOR')
     company_industry = models.CharField(max_length=25, default='DEFAULT INDUSTRY')
     company_projects = models.CharField(max_length=25, default='DEFAULT PROJECT')
+    delete_item = models.BooleanField(default = False)
+    private = models.BooleanField(default = False)
 
     class Meta:
     	permissions = (

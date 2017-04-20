@@ -128,20 +128,15 @@ def addUser(request, group_id):
         print("BEFORE LOOP")
         for user in storedUsers:        # The already made users
             if user.username == name:
-                print("MADE IT BEFORE IF: ", user.username)
 
                 alreadyInGroup = False
-                # print()
-                # for group in user.groups.all():
-                #     if group.id == group_id:
-                #         alreadyInGroup = True
-
-                print("Already in group?: ", alreadyInGroup)
-
-                group = user.groups.add(group_id)
                 for group in user.groups.all():
-                     print(group.name)
-                
+                    if str(group.id) == str(group_id):
+                        alreadyInGroup = True
+
+                if alreadyInGroup == False:
+                    group = user.groups.add(group_id)
+
 
         return HttpResponseRedirect('/viewGroups/')
     else:

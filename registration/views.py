@@ -102,6 +102,7 @@ def reportform(request):
         form = ReportForm(request.POST)
         if form.is_valid():
             report = form.save()
+            report.username = request.user.username
             report.name = request.POST.get("company_name", '')
             report.num = request.POST.get("company_phone", '')
             report.ceo = request.POST.get("ceo", '')
@@ -111,18 +112,33 @@ def reportform(request):
             report.sector = request.POST.get("company_sector", '')
             report.industry = request.POST.get("company_industry", '')
             report.projects = request.POST.get("company_projects", '')
-            report.save()
+            report.private = request.POST.get("private", '')
             return render(request, 'cmp_home.html')
-    elif request.method == "GET":
+        else:
+            return render(request, 'reports.html', {'form': form})
+    else:
         form = ReportForm(request.GET)
         return render(request, 'reports.html', {'form': form})
 
 def getReports(request):
+    user = request.user
+    for each in report.objects.all():
+        if each.delete_item is True:
+            each.delete()
+
     reports = report.objects.all()
-    return render(request, 'viewReports.html', {'reports': reports})
+
+    listReports = []
+
+    for rep in reports:
+        if rep.private == False or user.admin_status:
+            listReports.append(rep)
+
+    return render(request, 'viewReports.html', {'reports': listReports})
 
 @csrf_exempt
 def search(request):
+    user = request.user
     if request.method == 'POST':
         searchBar = request.POST.get('search')
 
@@ -130,12 +146,17 @@ def search(request):
                                         Q(company_industry__contains=searchBar)|Q(company_email__contains=searchBar)|
                                         Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
 
-        return render(request, 'viewReports.html', {'reports': reports})
+        finalListReports = []
+        for rep in reports:
+            if rep.private == False or user.admin_status:
+                finalListReports.append(rep)
+
+        return render(request, 'viewReports.html', {'reports': finalListReports})
 
 
 @csrf_exempt
 def advancedSearch(request):
-
+    user = request.user
     if request.method == 'POST':
         name = request.POST.get('name')
         number = request.POST.get('number')
@@ -164,7 +185,12 @@ def advancedSearch(request):
         if projects != None:
             set = set & report.objects.filter(company_projects__contains=projects)
 
-        return render(request, 'viewReports.html', {'reports': set})
+        finalListReports = []
+        for rep in set:
+            if rep.private == False or user.admin_status:
+                finalListReports.append(rep)
+
+        return render(request, 'viewReports.html', {'reports': finalListReports})
 
     else:
         return render(request, 'advancedSearch.html')
