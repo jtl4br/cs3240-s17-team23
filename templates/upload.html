@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lokai File Upload</title>
+    <title>Lokahi File Upload</title>
     <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/ebf1c6b47e.js"></script>
 </head>
@@ -38,13 +38,28 @@
     </div>
   </div>
 </nav>
-<h2>File Upload</h2>
-<form  action="/upload/" method="post" enctype="multipart/form-data">
-    <table>
-        {% csrf_token %}
-        {{ form.as_table }}
-        <button type="submit">Upload</button>
-    </table>
-</form>
+<h2> &nbsp; Upload</h2>
+
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Upload a file</h3>
+            </div>
+            <div class="panel-body">
+                <form  action="/upload/" method="post" enctype="multipart/form-data">
+                    <table>
+                        {% csrf_token %}
+                        {{ form.as_table }}
+                    </table>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
