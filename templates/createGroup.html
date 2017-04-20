@@ -41,8 +41,21 @@
 <!--<a href="/home" class="btn btn-primary">Lokahi</a>
 <a href="/logout" class="btn btn-primary" float="right">Logout</a>-->
 
-<h2>Groups!</h2>
+<div>
+<h2 style="float:left">&nbsp; &nbsp; Groups</h2>
 
+<a href="/viewGroups/"><input type="button" class="btn btn-default" value="View Your Group" style="float:right; margin-right:5%;"/></a>
+</div>
+
+<br><br/>
+<br><br/>
+
+
+<br><br><br>
+
+{% if user.admin_status %}
+    <a class="btn btn-primary btn-lg" href="/displayusers">View Site Users</a>
+{% endif %}
 
 <div class="container-fluid">
       <div class="row">

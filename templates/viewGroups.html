@@ -33,12 +33,18 @@
     </div>
   </div>
 </nav>
+<div>
+<h2 style="float:left">&nbsp; &nbsp; Groups</h2>
+
+<a href="/createGroup/"><input type="button" class="btn btn-default" value="Create a New Group" style="float:right; margin-right:5%;"/></a>
+</div>
+<br><br/>
 <br><br/>
 
-<br><br/>
+
+<br></br>
 
 <center>
-
 {% for group in groups %}
     <div>
         <p>Group Name: {{ group.name }}</p>
