@@ -28,9 +28,11 @@ urlpatterns = [
     url(r'^viewreports/', registration_views.getReports),
     url(r'^uploadfile/', report_views.upload_file),
     url(r'^displayusers/', admin_views.display_users),
+    url(r'^displaygroups/', admin_views.display_groups),
     url(r'^edituser/(.*)/', admin_views.edit_user),
     url(r'^search/', registration_views.search),
     url(r'^editreport/(.*)/', admin_views.edit_form),
+    url(r'^editgroup/(.*)/', admin_views.edit_group),
 
     url(r'^advancedSearch/', registration_views.advancedSearch),
 

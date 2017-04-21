@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from registration.models import SiteUser
+from django.contrib.auth.models import Group
 from .forms import Edit_User_Form
 from django.shortcuts import redirect
 from registration.models import report
 from .forms import Edit_Report_Form
+from .forms import Edit_Group_Form
 # Create your views here.
 def display_users(request):
     return render(request, 'Userdisplay.html', {'obj': SiteUser.objects.all()})
+def display_groups(request):
+    return render(request, 'GroupDisplay.html', {'grp': Group.objects.all()})
 
 def edit_user(request, user_id):
     instance = SiteUser.objects.get(id=user_id)
@@ -23,3 +27,11 @@ def edit_form(request, form_id):
         form.save()
         return redirect('/viewreports/')
     return render(request, 'editform.html', {'form': form, 'report': instance})
+
+def edit_group(request, group_id):
+    instance = Group.objects.get(id=group_id)
+    form = Edit_Group_Form(request.POST or None, instance=instance)
+    if form.is_valid():
+        form.save()
+        return redirect('/displaygroups/')
+    return render(request, 'editgroup.html', {'form': form, 'group': instance})
