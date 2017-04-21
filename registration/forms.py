@@ -2,6 +2,7 @@
 from django import forms
 from .models import report
 from django.forms import ModelForm
+import django.contrib.auth
 
 # creating our forms
 class Signup(forms.Form):

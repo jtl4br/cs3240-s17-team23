@@ -13,6 +13,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from admin import views as admin_views
 from chat import views as chat_views
+import django.contrib.auth
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
