@@ -24,8 +24,8 @@ class SiteUser(AbstractUser):
 class report(models.Model):
     username = models.CharField(max_length=150, default='DEFAULT USERNAME')
     company_name = models.CharField(max_length=50, default='DEFAULT COMPANY')
-    company_phone = PhoneNumberField()
-    #company_phone = models.CharField(max_length=25)
+    #company_phone = PhoneNumberField()
+    company_phone = models.CharField(max_length=25)
     ceo = models.CharField(max_length=25, default='DEFAULT CEO')
     #company_email = models.CharField(max_length=25, default='DEFAULT EMAIL')
     company_email = models.EmailField(max_length=100, default='DEFAULT EMAIL')
