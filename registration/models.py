@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
-import django.contrib.auth
+#import django.contrib.auth
 
 
 
