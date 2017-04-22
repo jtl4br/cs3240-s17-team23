@@ -30,8 +30,14 @@ def edit_form(request, form_id):
 
 def edit_group(request, group_id):
     instance = Group.objects.get(id=group_id)
+    members = []
+    user_instance = SiteUser.objects.all()
+    for i in user_instance:
+        if i.groups.filter(name = instance.name).exists():
+            members.append(i)
+
     form = Edit_Group_Form(request.POST or None, instance=instance)
     if form.is_valid():
         form.save()
         return redirect('/displaygroups/')
-    return render(request, 'editgroup.html', {'form': form, 'group': instance})
+    return render(request, 'editgroup.html', {'form': form, 'group': instance, 'members': members})

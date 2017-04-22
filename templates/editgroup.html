@@ -38,9 +38,14 @@
 </nav>
 <table>
 <tr>
+    <th>Group Members</th>
 </tr>
+    {% for m in members %}
 <tr>
+  <td>{{ m.username }}</td>
+  <td><a class="btn btn-primary btn-sml" href="/editgroup/{{ g.pk }}/">Remove Member</a></td>
 </tr>
+     {% endfor %}
 </table>
 <form action="/editgroup/{{ group.pk }}/" method="post">
     {% csrf_token %}
