@@ -123,6 +123,15 @@ def leaveGroup(request, group_id):
         return render(request, 'inv_home.html')
 
 @csrf_exempt
+def RemoveFromGroup(request, group_id, name):
+
+    instance = SiteUser.objects.get(username=name)
+
+    instance.groups.remove(group_id)
+
+    return HttpResponseRedirect('/editgroup/' + group_id + '/')
+
+@csrf_exempt
 def addUser(request, group_id):
 
     if request.method == 'POST':

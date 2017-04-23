@@ -43,7 +43,7 @@
     {% for m in members %}
 <tr>
   <td>{{ m.username }}</td>
-  <td><a class="btn btn-primary btn-sml" href="/editgroup/{{ g.pk }}/">Remove Member</a></td>
+  <td><a class="btn btn-primary btn-sml" href="/removeFromGroup/{{ group.id }}/{{ m }}">Remove Member</a></td>
 </tr>
      {% endfor %}
 <tr><a class="btn btn-primary btn-lg" href="/addUserAdmin/{{ group.id }}">Add Members</a></tr>
