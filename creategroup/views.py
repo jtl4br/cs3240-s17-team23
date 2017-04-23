@@ -147,4 +147,28 @@ def addUser(request, group_id):
     else:
         id = group_id
         return render(request, 'addUserToGroup.html', {'id': id})
+@csrf_exempt
+def AdminAddUser(request, group_id):
+
+    if request.method == 'POST':
+        name = request.POST.get('newUser')
+
+        storedUsers = SiteUser.objects.all() # Get all of the users who have been created
+
+        print("BEFORE LOOP")
+        for user in storedUsers:        # The already made users
+            if user.username == name:
+
+                alreadyInGroup = False
+                for group in user.groups.all():
+                    if str(group.id) == str(group_id):
+                        alreadyInGroup = True
+
+                if alreadyInGroup == False:
+                    group = user.groups.add(group_id)
+
+        return HttpResponseRedirect('/editgroup/' + group_id + '/')
+    else:
+        id = group_id
+        return render(request, 'adminAddUserToGroup.html', {'id': id})
 

@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'^viewGroups/', creategroup_views.viewGroups),
     url(r'^leaveGroup/(?P<group_id>[0-9]+)$', creategroup_views.leaveGroup),
     url(r'^addUser/(?P<group_id>[0-9]+)$', creategroup_views.addUser),
+    url(r'^addUserAdmin/(?P<group_id>[0-9]+)$', creategroup_views.AdminAddUser),
 
     url(r'^createmessage/', chat_views.messageform),
     url(r'^viewmessages/', chat_views.viewMessages),

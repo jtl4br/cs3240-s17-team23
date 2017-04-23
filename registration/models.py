@@ -27,7 +27,7 @@ class report(models.Model):
 
     timestamp = models.DateTimeField(null=True)
 
-    files = models.ManyToManyField(UserFiles)
+    files = models.ManyToManyField(UserFiles, null=True)
 
 
 
