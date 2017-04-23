@@ -16,4 +16,4 @@ class Edit_Report_Form(forms.ModelForm):
 class Edit_Group_Form(forms.ModelForm):
     class Meta:
         model = Group
-        exclude = (None,)
+        exclude = ('permissions',)
