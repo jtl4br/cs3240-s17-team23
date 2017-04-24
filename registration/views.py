@@ -146,13 +146,38 @@ def getReports(request):
             each.delete()
 
     reports = report.objects.all()
-
     listReports = []
 
     for rep in reports:
         if rep.private == False or user.admin_status:
             listReports.append(rep)
 
+    myGroups = request.user.groups.all()
+
+    storedUsers = SiteUser.objects.all()  # Get all of the users who have been created
+
+    # Find every user that you are in a group with
+    usernamesList = []
+    for user in storedUsers:  # Get all users
+        otherUserGroups = user.groups.all()  # Get current user's groups
+        for group in myGroups:  # iterate through other groups
+            for otherGroup in otherUserGroups:  # iterate through every other user's groups
+                if str(group.name) == str(
+                        otherGroup.name) and user not in usernamesList:  # Find every person that you share a group with
+                    usernamesList.append(user)
+
+    # for username in usernamesList:
+    #     print("I share a group with: ", username)
+
+    # Display public reports and only private reports from group members
+    for rep in reports:
+        if rep.private == False:
+            listReports.append(rep)
+        else:
+            print(rep.username)
+            if str(rep.username) in str(usernamesList):
+                print("dislay private report from: ", rep.username)
+                listReports.append(rep)
     return render(request, 'viewReports.html', {'reports': listReports})
 
 @csrf_exempt
@@ -164,18 +189,43 @@ def search(request):
         reports = report.objects.filter(Q(company_name__contains=searchBar)|Q(company_phone__contains=searchBar)|
                                         Q(company_industry__contains=searchBar)|Q(company_email__contains=searchBar)|
                                         Q(company_location__contains=searchBar)|Q(company_projects__contains=searchBar))
+        listReports = []
 
-        finalListReports = []
         for rep in reports:
-            if rep.private == False or user.admin_status:
-                finalListReports.append(rep)
+             if rep.private == False or user.admin_status:
+                 listReports.append(rep)
 
-        return render(request, 'viewReports.html', {'reports': finalListReports})
+        myGroups = request.user.groups.all()
+
+        storedUsers = SiteUser.objects.all()  # Get all of the users who have been created
+
+        # Find every user that you are in a group with
+        usernamesList = []
+        for user in storedUsers:  # Get all users
+            otherUserGroups = user.groups.all()  # Get current user's groups
+            for group in myGroups:  # iterate through other groups
+                for otherGroup in otherUserGroups:  # iterate through every other user's groups
+                    if str(group.name) == str(
+                            otherGroup.name) and user not in usernamesList:  # Find every person that you share a group with
+                        usernamesList.append(user)
+
+        # for username in usernamesList:
+        #     print("I share a group with: ", username)
+
+        # Display public reports and only private reports from group members
+        for rep in reports:
+            if rep.private == False:
+                listReports.append(rep)
+            else:
+                print(rep.username)
+                if str(rep.username) in str(usernamesList):
+                    print("dislay private report from: ", rep.username)
+                    listReports.append(rep)
+        return render(request, 'viewReports.html', {'reports': listReports})
 
 
 @csrf_exempt
 def advancedSearch(request):
-    user = request.user
     if request.method == 'POST':
         name = request.POST.get('name')
         number = request.POST.get('number')
@@ -204,12 +254,34 @@ def advancedSearch(request):
         if projects != None:
             set = set & report.objects.filter(company_projects__contains=projects)
 
-        finalListReports = []
+        # finalListReports = []
+        # for rep in set:
+        #     if rep.private == False:
+        #         finalListReports.append(rep)
+
+        listReports = []
+        myGroups = request.user.groups.all()
+        storedUsers = SiteUser.objects.all()  # Get all of the users who have been created
+
+        # Find every user that you are in a group with
+        usernamesList = []
+        for user in storedUsers:  # Get all users
+            otherUserGroups = user.groups.all()  # Get current user's groups
+            for group in myGroups:  # iterate through other groups
+                for otherGroup in otherUserGroups:  # iterate through every other user's groups
+                    if str(group.name) == str(
+                            otherGroup.name) and user not in usernamesList:  # Find every person that you share a group with
+                        usernamesList.append(user)
+
+        # Display public reports and only private reports from group members
         for rep in set:
             if rep.private == False or user.admin_status:
-                finalListReports.append(rep)
+                listReports.append(rep)
+            else:
+                if str(rep.username) in str(usernamesList):
+                    listReports.append(rep)
 
-        return render(request, 'viewReports.html', {'reports': finalListReports})
+        return render(request, 'viewReports.html', {'reports': listReports})
 
     else:
         return render(request, 'advancedSearch.html')
