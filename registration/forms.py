@@ -22,7 +22,7 @@ class LoginForm(forms.Form):
 
 
 class ReportForm(ModelForm):
-    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False)
     class Meta:
         model = report
         fields = ['company_name', 'ceo', 'company_email', 'company_location', 'company_country',

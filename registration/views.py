@@ -126,6 +126,7 @@ def reportform(request):
             report.timestamp = datetime.datetime.now()
             report.save()
             files = request.FILES.getlist('file_field')
+
             for f in files:
                 file = UserFiles.objects.create(file=f)
                 report.files.add(file)
