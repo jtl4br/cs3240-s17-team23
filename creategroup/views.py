@@ -25,35 +25,6 @@ def createGroup(request):
         return render(request, 'logintemp.html', {'form': form})
 
     if request.method == 'POST':
-        #Jonathan's old code
-        # name = request.POST.get('name')
-        # description = request.POST.get('description')
-        # creator = request.session['username']
-        # context = {
-        #     'name': name,
-        #     'description': description,
-        #     'creator': creator,
-        # }
-        #
-        # form = NewGroupForm(request.POST)
-        # if form.is_valid():
-        #     new_group = group()
-        #     new_group.group_name = request.POST['name']
-        #     new_group.group_description = request.POST['description']
-        #     new_group.creator_name = ""
-        #     new_group.creator_username = creator
-        #     new_group.save()
-        #     new_django_group = Group.objects.get_or_create(name='new_group')
-        #     #ct = ContentType.objects.get_for_model(tempModel)
-        #     #permission = Permission.objects.create(codename='can_add_tempModel',
-        #     #                                       name='Can add tempModel',
-        #     #                                       content_type=ct)
-        #     #new_django_group.permissions.add(permission)
-        #     #new_django_group.save()
-        #     #new_group.clear()
-        #     #return render(request, 'groupCreated.html')
-        #     template = loader.get_template('groupCreated.html')
-        #     return HttpResponse(template.render(context, request))
 
         groupName = request.POST.get('name')
         groupCreator = request.session['username']
@@ -64,19 +35,16 @@ def createGroup(request):
         groupUsers = str(users)
         groupUsers = groupUsers.split() # Get list of usernames entered, split on whitespace
 
-        if groupCreator not in groupUsers:
-            groupUsers.append(groupCreator)
-
         storedUsers = SiteUser.objects.all() # Get all of the users who have been created
 
-
         #Always add the current user, since they made the group
-        #request.user.groups.add(new_group)
+        request.user.groups.add(new_group)
+
+        currentUsername = request.user.username
 
         for user in storedUsers:        # The already made users
             for name in groupUsers:     # The list of usernames entered to be added to the group
                 if user.username == name:
-                    print("added a new person!!!!!!!")
                     user.groups.add(new_group)
         
         # Go back to appropriate home page
@@ -99,8 +67,6 @@ def viewGroups(request):
 
     groups = request.user.groups.all()
 
-    
-    print(groups)
     groups.noGroups = True
     for g in groups:
         groups.noGroups = False
