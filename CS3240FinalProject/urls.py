@@ -49,6 +49,7 @@ urlpatterns = [
 
     url(r'^createmessage/', chat_views.messageform),
     url(r'^viewmessages/', chat_views.viewMessages),
+    url(r'^deletemessage/(?P<message_id>[0-9]+)$', chat_views.deleteMessage),
 
     ### URLs FOR THE FDA ###
     url(r'^login_FDA/', FDA_views.login_view_FDA),

@@ -65,6 +65,17 @@ def viewMessages(request):
     return render(request, 'viewMessages.html', {'messages': messages})
 
 
+@csrf_exempt
+def deleteMessage(request, message_id):
+
+    message.objects.filter(id=message_id).delete()
+
+    recipient = request.user.username
+
+    # only display message sent to the current user
+    messages = message.objects.filter(Q(message_recipient__iexact=recipient))
+
+    return render(request, 'viewMessages.html', {'messages': messages})
 
 
 
