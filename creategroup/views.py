@@ -30,22 +30,33 @@ def createGroup(request):
         groupCreator = request.session['username']
         users = request.POST.get('users')
 
-        new_group = Group.objects.create(name=groupName)
 
-        groupUsers = str(users)
-        groupUsers = groupUsers.split() # Get list of usernames entered, split on whitespace
+        groups = Group.objects.all()
+        groupExists = False
+        for group in groups:
+            print(group.name)
+            if str(group.name) == str(groupName):
+                groupExists = True
 
-        storedUsers = SiteUser.objects.all() # Get all of the users who have been created
+        if groupExists == False:
+            new_group = Group.objects.create(name=groupName)
+            groupUsers = str(users)
+            groupUsers = groupUsers.split() # Get list of usernames entered, split on whitespace
+            storedUsers = SiteUser.objects.all() # Get all of the users who have been created
 
-        #Always add the current user, since they made the group
-        request.user.groups.add(new_group)
+            #Always add the current user, since they made the group
+            request.user.groups.add(new_group)
 
-        currentUsername = request.user.username
+            currentUsername = request.user.username
 
-        for user in storedUsers:        # The already made users
-            for name in groupUsers:     # The list of usernames entered to be added to the group
-                if user.username == name:
-                    user.groups.add(new_group)
+            if groupExists == False:
+                for user in storedUsers:        # The already made users
+                    for name in groupUsers:     # The list of usernames entered to be added to the group
+                        if user.username == name:
+                            user.groups.add(new_group)
+
+
+
         
         # Go back to appropriate home page
         if request.user.user_type == "CMP_USR":
