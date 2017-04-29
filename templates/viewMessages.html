@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<style>
-  body {
-    background-color: #DCDCDC; 
-  }
-</style>
 
 <body>
 
@@ -43,12 +38,19 @@
 
 <h2 style="float:left">&nbsp; &nbsp; Your Messages </h2>
 
+<style>
+  body {
+    background-color: #E8E8E8; 
+  }
+</style>
+
 <a href="/createmessage"><input type="button" class="btn btn-default" value="Send a New Message" style="float:right; margin-right:5%;"/></a>
 </div>
 <br><br/>
 <br><br/>
 <br><br/>
 <center>
+
 
 {% for message in messages %}
     <div>
