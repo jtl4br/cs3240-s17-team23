@@ -12,6 +12,13 @@
         <title>Company Home Page</title>
     {% endif %}
 </head>
+
+<style>
+  body {
+    background-color: #E8E8E8; 
+  }
+</style>
+
 <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -30,7 +37,7 @@
         <li><a href="/home">Dashboard</a></li>
         <li><a href="/viewreports">Reports</a></li>
         <li><a href="/viewGroups">Groups</a></li>
-          <li><a href="/viewmessages">Messages</a></li>
+        <li><a href="/viewmessages">Messages</a></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -54,31 +61,31 @@
 </a>
 <a href="/viewreports">
     <div class="panel-body center" style="float:left; width:12%">
-        <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
+        <i class="fa fa-folder-open fa-5x center-icon" aria-hidden="true"></i>
         <p>View Reports</p>
     </div>
 </a>
 <a href="/createGroup">
 <div class="panel-body center" style="float:left; width:12%">
-    <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
+    <i class="fa fa-users fa-5x center-icon" aria-hidden="true"></i>
     <p>Create a Group</p>
 </div>
 </a>
 <a href="/viewGroups">
 <div class="panel-body center" style="float:left; width:12%">
-    <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
+    <i class="fa fa-address-book fa-5x center-icon" aria-hidden="true"></i>
     <p>View Your Groups</p>
 </div>
 </a>
 <a href="/createmessage">
 <div class="panel-body center" style="float:left; width:12%">
-    <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
+    <i class="fa fa-comment fa-5x center-icon" aria-hidden="true"></i>
     <p>Send Message</p>
 </div>
 </a>
 <a href="/viewmessages">
 <div class="panel-body center" style="float:left; width:12%">
-    <i class="fa fa-file-text fa-5x center-icon" aria-hidden="true"></i>
+    <i class="fa fa-comments fa-5x center-icon" aria-hidden="true"></i>
     <p>View Messages</p>
 </div>
 </a>
@@ -86,6 +93,7 @@
 
 {% if user.admin_status %}
     <a class="btn btn-primary btn-lg" href="/displayusers">View Site Users</a>
+    <a class="btn btn-primary btn-lg" href="/displaygroups">View Groups</a>
 {% endif %}
 
 </body>

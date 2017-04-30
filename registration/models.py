@@ -20,12 +20,22 @@ class SiteUser(AbstractUser):
     )
     admin_status = models.BooleanField(default=0)
 
+class UserFiles(models.Model):
+    #user = models.OneToOneField(User)
+    file = models.FileField(upload_to='files/users/user.username/%Y_%m_%d/')
 
 class report(models.Model):
+
+    timestamp = models.DateTimeField(null=True)
+
+    files = models.ManyToManyField(UserFiles, null=True)
+
+
+
     username = models.CharField(max_length=150, default='DEFAULT USERNAME')
     company_name = models.CharField(max_length=50, default='DEFAULT COMPANY')
     #company_phone = PhoneNumberField()
-    company_phone = models.CharField(max_length=25)
+    company_phone = models.CharField(max_length=11)
     ceo = models.CharField(max_length=25, default='DEFAULT CEO')
     #company_email = models.CharField(max_length=25, default='DEFAULT EMAIL')
     company_email = models.EmailField(max_length=100, default='DEFAULT EMAIL')
@@ -36,7 +46,12 @@ class report(models.Model):
     company_industry = models.CharField(max_length=25, default='DEFAULT INDUSTRY')
     company_projects = models.CharField(max_length=25, default='DEFAULT PROJECT')
     delete_item = models.BooleanField(default = False)
-    private = models.BooleanField(default = False)
+    #private = models.BooleanField(default = False)
+    options = (
+        ('Y', "Yes"),
+        ('N', 'No')
+        )
+    private = models.CharField(max_length=1, choices=options, default="Yes")
 
     class Meta:
     	permissions = (
