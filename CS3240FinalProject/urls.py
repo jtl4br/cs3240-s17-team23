@@ -54,7 +54,6 @@ urlpatterns = [
     ### URLs FOR THE FDA ###
     url(r'^login_FDA/', FDA_views.login_view_FDA),
     url(r'^viewReports_FDA/', FDA_views.viewReports_FDA),
-    #url(r'^stuff/', FDA_views.profile),
 
 
 
