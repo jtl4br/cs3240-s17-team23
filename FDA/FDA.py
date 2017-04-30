@@ -1,6 +1,18 @@
 import requests
 import json
 
+
+def login():
+
+	username = input("Username: ")
+	password = input("Password: ")
+
+	r = requests.post('http://127.0.0.1:8000/login_FDA/', data = {'username':username, 'password':password})
+
+	r = r.json()
+
+	return r.get('passed')
+
 def viewReports():
 	r = requests.post('http://127.0.0.1:8000/viewReports_FDA/')
 
@@ -20,19 +32,6 @@ def viewReports():
 	return r.json()
 
 
-def login():
-
-	username = input("Username: ")
-	password = input("Password: ")
-
-	r = requests.post('http://127.0.0.1:8000/login_FDA/', data = {'username':username, 'password':password})
-
-	r = r.json()
-
-	return r.get('passed')
-
-
-
 # BEGINNING OF THE USER INTERFACE FOR FDA
 if login() == 'y':
 	print("successful login")
@@ -46,8 +45,7 @@ if login() == 'y':
 
 	if value == '1':
 		viewReports()
-
-
-
+	else:
+		print("Invalid input")
 else:
 	print("login failed")
