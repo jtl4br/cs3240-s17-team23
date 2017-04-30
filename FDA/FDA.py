@@ -39,13 +39,17 @@ if login() == 'y':
 	print("Welcome to Lohaki!")
 	print()
 
-	value = input("Enter '1' to view reports: ")
+	value = ""
 
-	print(value)
+	while value != "quit":
+		print("Enter '1' to view reports")
+		print("Enter 'quit' to exit FDA")
+		value = input("Enter command: ")
+		print()
 
-	if value == '1':
-		viewReports()
-	else:
-		print("Invalid input")
+		if value == '1':
+			viewReports()
+		elif value != 'quit':
+			print("Invalid input")
 else:
 	print("login failed")
