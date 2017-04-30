@@ -33,7 +33,7 @@ class report(models.Model):
 
     username = models.CharField(max_length=150, default='DEFAULT USERNAME')
     company_name = models.CharField(max_length=50, default='DEFAULT COMPANY')
-    company_phone = PhoneNumberField()
+    company_phone = models.CharField(max_length=11)
 
     #company_phone = models.CharField(max_length=25)
     ceo = models.CharField(max_length=25, default='DEFAULT CEO')
@@ -46,7 +46,12 @@ class report(models.Model):
     company_industry = models.CharField(max_length=25, default='DEFAULT INDUSTRY')
     company_projects = models.CharField(max_length=25, default='DEFAULT PROJECT')
     delete_item = models.BooleanField(default = False)
-    private = models.BooleanField(default = False)
+    #private = models.BooleanField(default = False)
+    options = (
+        ('Y', "Yes"),
+        ('N', 'No')
+        )
+    private = models.CharField(max_length=1, choices=options, default="Yes")
 
     class Meta:
     	permissions = (

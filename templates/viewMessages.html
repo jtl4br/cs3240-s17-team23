@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+  <style>
+  body {
+    background-color: #E8E8E8 !important;
+  }
+</style>
+</head>
+
 <body>
 
 <nav class="navbar navbar-inverse">
@@ -44,10 +52,12 @@
 <br><br/>
 <center>
 
+
 {% for message in messages %}
     <div>
         <p>Message Sender: {{ message.message_sender }}</p>
         <p>Message Content: {{ message.message_content }}</p>
+        <a href="/deletemessage/{{ message.id }}" class="btn btn-primary" float="right">Delete Message</a>
     <br><br/>
     </div>
 {% endfor %}

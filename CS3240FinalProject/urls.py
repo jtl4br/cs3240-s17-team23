@@ -42,17 +42,19 @@ urlpatterns = [
 
     url(r'^createGroup/', creategroup_views.createGroup),
     url(r'^viewGroups/', creategroup_views.viewGroups),
-    url(r'^leaveGroup/(?P<group_id>[0-9]+)$/', creategroup_views.leaveGroup),
+    url(r'^leaveGroup/(?P<group_id>[0-9]+)$', creategroup_views.leaveGroup),
     url(r'^removeFromGroup/(.*)/(.*)/', creategroup_views.RemoveFromGroup),
     url(r'^addUser/(?P<group_id>[0-9]+)$', creategroup_views.addUser),
     url(r'^addUserAdmin/(?P<group_id>[0-9]+)$', creategroup_views.AdminAddUser),
 
     url(r'^createmessage/', chat_views.messageform),
     url(r'^viewmessages/', chat_views.viewMessages),
+    url(r'^deletemessage/(?P<message_id>[0-9]+)$', chat_views.deleteMessage),
 
     ### URLs FOR THE FDA ###
     url(r'^login_FDA/', FDA_views.login_view_FDA),
     url(r'^viewReports_FDA/', FDA_views.viewReports_FDA),
+    #url(r'^stuff/', FDA_views.profile),
 
 
 

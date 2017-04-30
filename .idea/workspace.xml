@@ -3,7 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="1018bdcb-2d9d-416e-9936-4f947c652e6e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS3240FinalProject/settings.py" afterPath="$PROJECT_DIR$/CS3240FinalProject/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS3240FinalProject/urls.py" afterPath="$PROJECT_DIR$/CS3240FinalProject/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FDA/FDA.py" afterPath="$PROJECT_DIR$/FDA/FDA.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FDA/views.py" afterPath="$PROJECT_DIR$/FDA/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chat/views.py" afterPath="$PROJECT_DIR$/chat/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creategroup/views.py" afterPath="$PROJECT_DIR$/creategroup/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registration/forms.py" afterPath="$PROJECT_DIR$/registration/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registration/models.py" afterPath="$PROJECT_DIR$/registration/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registration/views.py" afterPath="$PROJECT_DIR$/registration/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/addUserToGroup.html" afterPath="$PROJECT_DIR$/templates/addUserToGroup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/cmp_home.html" afterPath="$PROJECT_DIR$/templates/cmp_home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/createGroup.html" afterPath="$PROJECT_DIR$/templates/createGroup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/createMessage.html" afterPath="$PROJECT_DIR$/templates/createMessage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/inv_home.html" afterPath="$PROJECT_DIR$/templates/inv_home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/reports.html" afterPath="$PROJECT_DIR$/templates/reports.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/viewGroups.html" afterPath="$PROJECT_DIR$/templates/viewGroups.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/viewMessages.html" afterPath="$PROJECT_DIR$/templates/viewMessages.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/viewReports.html" afterPath="$PROJECT_DIR$/templates/viewReports.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,16 +78,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="logintemp.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/logintemp.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -106,18 +112,32 @@
         <entry file="file://$PROJECT_DIR$/manage.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="82" />
+              <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="82" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CS3240FinalProject/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
-              <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+              <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/registration/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="24" column="109" lean-forward="false" selection-start-line="24" selection-start-column="109" selection-end-line="24" selection-end-column="109" />
+              <folding>
+                <element signature="e#18#42#0" expanded="true" />
+                <marker date="1493576515637" expanded="true" signature="1260:1611" ph="..." />
+                <marker date="1493576515637" expanded="true" signature="1456:1610" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -164,7 +184,6 @@
         <option value="$PROJECT_DIR$/creategroup/forms.py" />
         <option value="$PROJECT_DIR$/creategroup/models.py" />
         <option value="$PROJECT_DIR$/templates/logintemp.html" />
-        <option value="$PROJECT_DIR$/registration/forms.py" />
         <option value="$PROJECT_DIR$/templates/success.html" />
         <option value="$PROJECT_DIR$/templates/signupform.html" />
         <option value="$PROJECT_DIR$/registration/models.py" />
@@ -189,6 +208,7 @@
         <option value="$PROJECT_DIR$/templates/viewReports.html" />
         <option value="$PROJECT_DIR$/CS3240FinalProject/wsgi.py" />
         <option value="$PROJECT_DIR$/CS3240FinalProject/settings.py" />
+        <option value="$PROJECT_DIR$/registration/forms.py" />
       </list>
     </option>
   </component>
@@ -219,6 +239,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -241,14 +263,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs3240-s17-team23" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs3240-s17-team23" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="CS3240FinalProject" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -724,13 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/registration/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/registration/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -840,7 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -848,7 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,7 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -919,7 +943,7 @@
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="82" />
+          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="82" />
           <folding />
         </state>
       </provider>
@@ -935,8 +959,20 @@
     <entry file="file://$PROJECT_DIR$/CS3240FinalProject/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
-          <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+          <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/registration/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="24" column="109" lean-forward="false" selection-start-line="24" selection-start-column="109" selection-end-line="24" selection-end-column="109" />
+          <folding>
+            <element signature="e#18#42#0" expanded="true" />
+            <marker date="1493576515637" expanded="true" signature="1260:1611" ph="..." />
+            <marker date="1493576515637" expanded="true" signature="1456:1610" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
