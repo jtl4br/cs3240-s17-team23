@@ -79,15 +79,26 @@ def viewReport_FDA(request):
 
     for rep in reports:
         if rep.id == reportID:
-            singleReport.append(rep.company_name)
-            singleReport.append(rep.company_phone)
-            singleReport.append(rep.ceo)
-            singleReport.append(rep.company_email)
-            singleReport.append(rep.company_location)
+            singleReport[rep.id] = list()
+            singleReport[rep.id].append(rep.company_name)
+            singleReport[rep.id].append(rep.company_phone)
+            singleReport[rep.id].append(rep.ceo)
+            singleReport[rep.id].append(rep.company_email)
+            singleReport[rep.id].append(rep.company_location)
             # reportDictionary[rep.id].append(rep.company_country)
-            singleReport.append(rep.company_sector)
-            singleReport.append(rep.company_industry)
-            singleReport.append(rep.company_projects)
+            singleReport[rep.id].append(rep.company_sector)
+            singleReport[rep.id].append(rep.company_industry)
+            singleReport[rep.id].append(rep.company_projects)
+
+            # singleReport.append(rep.company_name)
+            # singleReport.append(rep.company_phone)
+            # singleReport.append(rep.ceo)
+            # singleReport.append(rep.company_email)
+            # singleReport.append(rep.company_location)
+            # # reportDictionary[rep.id].append(rep.company_country)
+            # singleReport.append(rep.company_sector)
+            # singleReport.append(rep.company_industry)
+            # singleReport.append(rep.company_projects)
 
     print(singleReport)
 
