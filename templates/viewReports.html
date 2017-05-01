@@ -43,7 +43,9 @@
 </nav>
 <div>
 <h2 style="float:left">&nbsp; &nbsp; View Your Reports</h2>
+    {% if user.user_type == 'CMP_USR' %}
 <a href="/createreport"><input type="button" class="btn btn-default" value="Create a New Report" style="float:right; margin-right:5%;"/></a>
+    {% endif %}
 </div>
 
 <br><br/>
