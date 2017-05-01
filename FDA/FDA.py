@@ -12,7 +12,6 @@ def login():
 
     return r.get('passed')
 
-
 def viewReports():
     r = requests.post('http://127.0.0.1:8000/viewReports_FDA/')
 
@@ -38,6 +37,21 @@ def viewReports():
 def viewReport():
     reportID = input("Enter the id of the report you would like to view: ")
     r = requests.post('http://127.0.0.1:8000/viewReport_FDA/', data={'reportID': reportID})
+
+    data = r.json()
+
+    for key in data:
+        print("report id: ", key)
+        print("company name: ", data[key][0])
+        print("company phone: ", data[key][1])
+        print("ceo: ", data[key][2])
+        print("email: ", data[key][3])
+        print("location: ", data[key][4])
+        print("sector: ", data[key][5])
+        print("industry: ", data[key][6])
+        print("projects: ", data[key][7])
+        print()
+
     return r.json()
 
 

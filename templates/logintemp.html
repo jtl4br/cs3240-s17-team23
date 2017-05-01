@@ -5,17 +5,26 @@
 
     <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" crossorigin="anonymous">
 
+<style>
+  body {
+    background-color: #E8E8E8 !important;
+  }
+</style>
+
 <div class="col-md-12 text-center">
 		<h1 height>Welcome To Lohaki </h1>
 		<p class="lead">Sign in or sign up below!</p>
 	    <title>LFC Login </title>
 
 	</head>
+
 	<body>
 	<div class="panel panel-primary">
 	<div class="panel-heading">Login</div>
 	<div class="panel panel-body">
 	<div class="col-xs-9 col-sm-6 col-sm-push-3">
+
+
 	<form action="/login/" class="form-vertical" method="post">
 	
 	    {% csrf_token %}

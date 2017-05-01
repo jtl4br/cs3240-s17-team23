@@ -35,7 +35,7 @@ def login_view_FDA(request):
             'passed': 'n',
         }
         return JsonResponse(data, safe=False)
-        
+
 @csrf_exempt
 def viewReports_FDA(request):
 
@@ -59,26 +59,20 @@ def viewReports_FDA(request):
         reportDictionary[rep.id].append(rep.company_industry)
         reportDictionary[rep.id].append(rep.company_projects)
 
-
     print(reportDictionary)
 
-    #data = {
-    #    'reportDictionary': reportDictionary,
-    #}
-    #return JsonResponse(data, safe=False)
-
     return JsonResponse(reportDictionary, safe=False)
-
 
 @csrf_exempt
 def viewReport_FDA(request):
     reportID = request.POST.get('reportID')
     reports = report.objects.all()
 
-    singleReport = list()
+    # dictionary to hold the single report
+    singleReport = {}
 
     for rep in reports:
-        if rep.id == reportID:
+        if str(rep.id) == str(reportID):
             singleReport[rep.id] = list()
             singleReport[rep.id].append(rep.company_name)
             singleReport[rep.id].append(rep.company_phone)
@@ -89,16 +83,6 @@ def viewReport_FDA(request):
             singleReport[rep.id].append(rep.company_sector)
             singleReport[rep.id].append(rep.company_industry)
             singleReport[rep.id].append(rep.company_projects)
-
-            # singleReport.append(rep.company_name)
-            # singleReport.append(rep.company_phone)
-            # singleReport.append(rep.ceo)
-            # singleReport.append(rep.company_email)
-            # singleReport.append(rep.company_location)
-            # # reportDictionary[rep.id].append(rep.company_country)
-            # singleReport.append(rep.company_sector)
-            # singleReport.append(rep.company_industry)
-            # singleReport.append(rep.company_projects)
 
     print(singleReport)
 
