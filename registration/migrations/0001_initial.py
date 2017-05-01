@@ -30,22 +30,14 @@ class Migration(migrations.Migration):
                 ('is_staff', models.BooleanField(help_text='Designates whether the user can log into this admin site.', default=False, verbose_name='staff status')),
                 ('is_active', models.BooleanField(help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', default=True, verbose_name='active')),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
-<<<<<<< HEAD
-                ('user_type', models.CharField(choices=[('INV_USR', 'Investor'), ('CMP_USR', 'Company')], default='INV_USR', max_length=7)),
-=======
                 ('user_type', models.CharField(default='INV_USR', max_length=7, choices=[('CMP_USR', 'Company'), ('INV_USR', 'Investor')])),
->>>>>>> 2b115a86ba3c29d26125c26238460f33fad2612e
                 ('admin_status', models.BooleanField(default=0)),
                 ('groups', models.ManyToManyField(to='auth.Group', blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(to='auth.Permission', blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', verbose_name='user permissions')),
             ],
             options={
-                'abstract': False,
                 'verbose_name_plural': 'users',
-<<<<<<< HEAD
-=======
                 'abstract': False,
->>>>>>> 2b115a86ba3c29d26125c26238460f33fad2612e
                 'verbose_name': 'user',
             },
             managers=[
@@ -55,18 +47,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='report',
             fields=[
-<<<<<<< HEAD
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('username', models.CharField(default='DEFAULT USERNAME', max_length=150)),
-                ('company_name', models.CharField(default='DEFAULT COMPANY', max_length=50)),
-                ('company_phone', models.CharField(max_length=25)),
-=======
                 ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
                 ('timestamp', models.DateTimeField(null=True)),
                 ('username', models.CharField(default='DEFAULT USERNAME', max_length=150)),
                 ('company_name', models.CharField(default='DEFAULT COMPANY', max_length=50)),
                 ('company_phone', phonenumber_field.modelfields.PhoneNumberField(max_length=128)),
->>>>>>> 2b115a86ba3c29d26125c26238460f33fad2612e
                 ('ceo', models.CharField(default='DEFAULT CEO', max_length=25)),
                 ('company_email', models.EmailField(default='DEFAULT EMAIL', max_length=100)),
                 ('company_location', models.CharField(default='DEFAULT LOC', max_length=25)),

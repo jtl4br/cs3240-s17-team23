@@ -107,6 +107,8 @@ def reportform(request):
     if request.session['loggedIn'] == False:
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
+    if request.session['user_type'] == "INV_USR":
+        return render(request, 'inv_home.html')
     if request.method == 'POST':
         form = ReportForm(request.POST, request.FILES)
         print(form.errors)

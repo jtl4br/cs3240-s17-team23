@@ -62,9 +62,36 @@ def viewReports_FDA(request):
 
     print(reportDictionary)
 
+    #data = {
+    #    'reportDictionary': reportDictionary,
+    #}
+    #return JsonResponse(data, safe=False)
+
     return JsonResponse(reportDictionary, safe=False)
 
 
+@csrf_exempt
+def viewReport_FDA(request):
+    reportID = request.POST.get('reportID')
+    reports = report.objects.all()
+
+    singleReport = list()
+
+    for rep in reports:
+        if rep.id == reportID:
+            singleReport.append(rep.company_name)
+            singleReport.append(rep.company_phone)
+            singleReport.append(rep.ceo)
+            singleReport.append(rep.company_email)
+            singleReport.append(rep.company_location)
+            # reportDictionary[rep.id].append(rep.company_country)
+            singleReport.append(rep.company_sector)
+            singleReport.append(rep.company_industry)
+            singleReport.append(rep.company_projects)
+
+    print(singleReport)
+
+    return JsonResponse(singleReport, safe=False)
 
 
 
