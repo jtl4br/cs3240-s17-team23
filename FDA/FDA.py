@@ -57,6 +57,28 @@ def viewReport():
 
 # return r.get('passed')
 
+def decrypt():
+    filename = input("Enter the name of the file you would like to encrypt: ")
+    # r = requests.post('http://127.0.0.1:8000/encrypt_FDA/', data={'filename': filename})
+    #
+    # data = r.json()
+    #
+    # for key in data:
+    #     print("report id: ", key)
+    #     print("company name: ", data[key][0])
+    #     print("company phone: ", data[key][1])
+    #     print("ceo: ", data[key][2])
+    #     print("email: ", data[key][3])
+    #     print("location: ", data[key][4])
+    #     print("sector: ", data[key][5])
+    #     print("industry: ", data[key][6])
+    #     print("projects: ", data[key][7])
+    #     print()
+    #
+    # return r.json()
+
+
+
 
 # BEGINNING OF THE USER INTERFACE FOR FDA
 if login() == 'y':
@@ -70,6 +92,7 @@ if login() == 'y':
     while value != "quit":
         print("Enter '1' to view reports")
         print("Enter '2' to view a specific report")
+        print("Enter '3' to encrypt a file")
         print("Enter 'quit' to exit FDA")
         value = input("Enter command: ")
         print()
@@ -78,6 +101,9 @@ if login() == 'y':
             viewReports()
         elif value == '2':
             viewReport()
+        elif value == '3':
+            print("temp")
+            #decrypt()
         elif value != 'quit':
             print("Invalid input")
 else:

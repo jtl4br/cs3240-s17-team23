@@ -34,6 +34,8 @@ def signupform(request):
             request.session['username'] = request.POST['username']
             request.session['user_type'] = user.user_type
             request.session['loggedIn'] = True
+            user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            login(request, user)
             return render(request, 'success.html')
     else:
     # creating a new form
@@ -58,12 +60,13 @@ def login_view(request):
                 request.session['username'] = request.POST['username']
                 request.session['user_type'] = user.user_type
                 request.session['loggedIn'] = True
+                username = request.session['username']
                 if user.user_type != None:
                     if user.user_type == 'INV_USR':
-                        return render(request, 'inv_home.html')
+                        return render(request, 'inv_home.html', {'username':username})
                     elif user.user_type == 'CMP_USR':
-                        return render(request, 'cmp_home.html')
-                return render(request, 'home.html')
+                        return render(request, 'cmp_home.html', {'username':username})
+                return render(request, 'home.html', {'username':username})
 
             # A backend authenticated the credentials
             else:
@@ -86,12 +89,13 @@ def home(request):
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
     user_type = request.session['user_type']
+    username = request.session['username']
     if user_type != None:
         if user_type == 'INV_USR':
-            return render(request, 'inv_home.html')
+            return render(request, 'inv_home.html', {'username': username})
         elif user_type == 'CMP_USR':
-            return render(request, 'cmp_home.html')
-    return render(request, 'home.html')
+            return render(request, 'cmp_home.html', {'username': username})
+    return render(request, 'home.html', {'username': username})
 
 def logout(request):
     request.session['username'] = None
@@ -151,36 +155,37 @@ def getReports(request):
     reports = report.objects.all()
     listReports = []
 
-    for rep in reports:
-        if rep.private == False or user.admin_status:
+    if user.admin_status:
+        for rep in reports:
+            #if rep.private == False or user.admin_status:
             listReports.append(rep)
+    else:
+        myGroups = request.user.groups.all()
 
-    myGroups = request.user.groups.all()
+        storedUsers = SiteUser.objects.all()  # Get all of the users who have been created
 
-    storedUsers = SiteUser.objects.all()  # Get all of the users who have been created
+        # Find every user that you are in a group with
+        usernamesList = []
+        for user in storedUsers:  # Get all users
+            otherUserGroups = user.groups.all()  # Get current user's groups
+            for group in myGroups:  # iterate through other groups
+                for otherGroup in otherUserGroups:  # iterate through every other user's groups
+                    if str(group.name) == str(
+                            otherGroup.name) and user not in usernamesList:  # Find every person that you share a group with
+                        usernamesList.append(user)
 
-    # Find every user that you are in a group with
-    usernamesList = []
-    for user in storedUsers:  # Get all users
-        otherUserGroups = user.groups.all()  # Get current user's groups
-        for group in myGroups:  # iterate through other groups
-            for otherGroup in otherUserGroups:  # iterate through every other user's groups
-                if str(group.name) == str(
-                        otherGroup.name) and user not in usernamesList:  # Find every person that you share a group with
-                    usernamesList.append(user)
+        # for username in usernamesList:
+        #     print("I share a group with: ", username)
 
-    # for username in usernamesList:
-    #     print("I share a group with: ", username)
-
-    # Display public reports and only private reports from group members
-    for rep in reports:
-        if rep.private == False:
-            listReports.append(rep)
-        else:
-            print(rep.username)
-            if str(rep.username) in str(usernamesList):
-                print("dislay private report from: ", rep.username)
+        # Display public reports and only private reports from group members
+        for rep in reports:
+            if rep.private == False:
                 listReports.append(rep)
+            else:
+                print(rep.username)
+                if str(rep.username) in str(usernamesList):
+                    print("dislay private report from: ", rep.username)
+                    listReports.append(rep)
     return render(request, 'viewReports.html', {'reports': listReports})
 
 @csrf_exempt

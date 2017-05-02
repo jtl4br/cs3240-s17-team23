@@ -47,53 +47,48 @@
     </div>
   </div>
 </nav>
-<!--<a href="/home" class="btn btn-primary">Lokahi</a>
-<a href="/logout" class="btn btn-primary" float="right">Logout</a>-->
+<h2 style="float:left">&nbsp; &nbsp; Messages </h2>
 
-<div>
-<h2 style="float:left">&nbsp; &nbsp; Groups</h2>
-
-<a href="/viewGroups/"><input type="button" class="btn btn-default" value="View Your Group" style="float:right; margin-right:5%;"/></a>
+<a href="/viewmessages/"><input type="button" class="btn btn-default" value="View Your Messages" style="float:right; margin-right:5%;"/></a>
 </div>
-
 <br><br/>
 <br><br/>
 
-
-<br><br><br>
 
 <div class="container-fluid">
       <div class="row">
         <div class="col-md-offset-4 col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Create a New Group</h3>
+                <center>
+              <h3 class="panel-title">Send a New Message</h3>
+                    </center>
             </div>
             <div class="panel-body">
-                <form method="post" action="/createGroup/">
+                <form method="post" action="/createmessage/">
                     <table>
                         <tr>
-                            <td>Enter a group name &nbsp;</td>
-                            <td><input type="text" name="name"/></td>
+                            <td>Recipient: &nbsp;</td>
+                            <td><input type="text" name="recipient"/></td>
                         </tr>
                         <tr>
-                            <!--<td>Enter a group description </td>
-                            <td><input type="text" name="description"/></td> -->
-                            <td>Enter users to be added &nbsp;</td>
-                            <td><input type="text" name="users"/></td>
+                            <td>Message Content: &nbsp;</td>
+                            <td><input type="text" name="content"/></td>
                         </tr>
+
+                        <b>One or more users does not exist</b>
+
                     </table>
                     <br>
                     <center>
-                    <button class="btn btn-primary">Create Group</button>
-                        </center>
+                    <button class="btn btn-primary">Send</button>
+                    </center>
                 </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-
 
 </body>
 </html>

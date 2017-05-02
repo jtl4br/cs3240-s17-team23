@@ -49,7 +49,8 @@ INSTALLED_APPS = (
     'reports',
     'phonenumber_field',
     'django_countries',
-    'chat'
+    'chat',
+    'profiles'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -130,7 +131,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'registration.SiteUser'
-
+AUTH_PROFILE_MODULE = "profiles.UserProfile"
 
 
 
