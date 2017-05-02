@@ -69,12 +69,19 @@ def createGroup(request):
                     for name in groupUsers:     # The list of usernames entered to be added to the group
                         if user.username == name:
                             user.groups.add(new_group)
-
+            #return render(request, 'viewGroups.html')
 
 
         
         # Go back to appropriate viewGroups page
-        return render(request, 'viewGroups.html')
+        groups = request.user.groups.all()
+
+        groups.noGroups = True
+        for g in groups:
+            groups.noGroups = False
+            break
+
+        return render(request, 'viewGroups.html', {'groups': groups})
     else:
         form = NewGroupForm()
     return render(request, 'createGroup.html', {'form': form})

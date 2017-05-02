@@ -28,10 +28,10 @@ def viewProfile(request, username):
                     usernamesList.append(user)
 
     user = SiteUser.objects.get(username=username)
-    firstname = request.user.first_name
-    lastname = request.user.last_name
-    email = request.user.email
-    username = request.user.username
+    firstname = user.first_name
+    lastname = user.last_name
+    email = user.email
+    username = user.username
 
 
     return render(request, 'viewProfile.html', {'firstname':firstname, 'lastname':lastname, 'email':email, 'username':username, 'groupMembers':usernamesList})
