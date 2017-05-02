@@ -88,12 +88,13 @@ def home(request):
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
     user_type = request.session['user_type']
+    username = request.session['username']
     if user_type != None:
         if user_type == 'INV_USR':
-            return render(request, 'inv_home.html')
+            return render(request, 'inv_home.html', {'username': username})
         elif user_type == 'CMP_USR':
-            return render(request, 'cmp_home.html')
-    return render(request, 'home.html')
+            return render(request, 'cmp_home.html', {'username': username})
+    return render(request, 'home.html', {'username': username})
 
 def logout(request):
     user = None

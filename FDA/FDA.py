@@ -12,7 +12,6 @@ def login():
 
     return r.get('passed')
 
-
 def viewReports():
     r = requests.post('http://127.0.0.1:8000/viewReports_FDA/')
 

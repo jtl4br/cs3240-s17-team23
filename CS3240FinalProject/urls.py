@@ -15,6 +15,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from admin import views as admin_views
 from chat import views as chat_views
+from profiles import views as profiles_views
 import django.contrib.auth
 
 urlpatterns = [
@@ -58,7 +59,7 @@ urlpatterns = [
     url(r'^viewReport_FDA/', FDA_views.viewReport_FDA),
     url(r'^encrypt_FDA/', FDA_views.encrypt_FDA),
 
-
+    url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', profiles_views.viewProfile),
 
 ]
 
