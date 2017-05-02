@@ -42,7 +42,10 @@ def messageform(request):
             new_message.message_sender = request.user.username
             new_message.save()
 
-            return render(request, 'cmp_home.html')
+            if request.user.user_type == "CMP_USR":
+                return render(request, 'cmp_home.html')
+            else:
+                return render(request, 'inv_home.html')
 
         # Go back to appropriate home page
         if request.user.user_type == "CMP_USR":
