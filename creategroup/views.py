@@ -58,11 +58,8 @@ def createGroup(request):
 
 
         
-        # Go back to appropriate home page
-        if request.user.user_type == "CMP_USR":
-             return render(request, 'cmp_home.html')
-        else:
-             return render(request, 'inv_home.html')
+        # Go back to appropriate viewGroups page
+        return render(request, 'viewGroups.html')
     else:
         form = NewGroupForm()
     return render(request, 'createGroup.html', {'form': form})
