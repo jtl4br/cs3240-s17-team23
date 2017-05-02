@@ -1,6 +1,6 @@
 import requests
 import json
-#from .encrypt import encrypt_file
+from encrypt import encrypt_file
 
 
 def login():
@@ -89,9 +89,9 @@ def viewReport():
 
 # return r.get('passed')
 
-# def enc():
-#     filename = input("Enter the name of the file you would like to encrypt: ")
-#     encrypt_file(filename, '0123456789123456')
+def enc():
+   filename = input("Enter the name of the file you would like to encrypt: ")
+   encrypt_file(filename, '0123456789123456')
     # r = requests.post('http://127.0.0.1:8000/encrypt_FDA/', data={'filename': filename})
     #
     # data = r.json()
@@ -158,7 +158,7 @@ if login() == 'y':
             viewReport()
         elif value == '3':
             print("temp")
-            #enc()
+            enc()
         elif value != 'quit':
             print("Invalid input")
 else:
