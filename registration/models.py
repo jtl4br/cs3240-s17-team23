@@ -18,7 +18,7 @@ class SiteUser(AbstractUser):
         default='INV_USR'
     )
     admin_status = models.BooleanField(default=0)
-
+    public_key = models.CharField(max_length= 1000, null=True)
 class UserFiles(models.Model):
     #user = models.OneToOneField(User)
     file = models.FileField(upload_to='files/users/user.username/%Y_%m_%d/')
@@ -28,6 +28,7 @@ class report(models.Model):
     timestamp = models.DateTimeField(null=True)
 
     files = models.ManyToManyField(UserFiles, null=True)
+    enc_file_op = models.BooleanField(default = False)
 
 
 
@@ -48,10 +49,10 @@ class report(models.Model):
     delete_item = models.BooleanField(default = False)
     #private = models.BooleanField(default = False)
     options = (
-        ('Y', "Yes"),
-        ('N', 'No')
-        )
-    private = models.CharField(max_length=1, choices=options, default="Yes")
+         ('Y', True), #"Yes"),
+         ('N', False) #'No')
+         )
+    private = models.CharField(max_length=1, choices=options, default= True)
 
     class Meta:
     	permissions = (

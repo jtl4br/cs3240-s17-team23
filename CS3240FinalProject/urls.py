@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^search/', registration_views.search),
     url(r'^editreport/(.*)/', admin_views.edit_form),
     url(r'^editgroup/(.*)/', admin_views.edit_group),
+    url(r'^deletereport/(?P<form_id>[0-9]+)$', admin_views.deleteReport),
 
     url(r'^advancedSearch/', registration_views.advancedSearch),
 
@@ -55,7 +56,9 @@ urlpatterns = [
     url(r'^login_FDA/', FDA_views.login_view_FDA),
     url(r'^viewReports_FDA/', FDA_views.viewReports_FDA),
     #url(r'^stuff/', FDA_views.profile),
+    url(r'^viewReport_FDA/', FDA_views.viewReport_FDA),
 
+    url(r'^keyupload/(?P<message_id>[0-9]+)$', chat_views.decrypt)
 
 
 ]

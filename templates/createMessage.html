@@ -66,17 +66,10 @@
             </div>
             <div class="panel-body">
                 <form method="post" action="/createmessage/">
-                    <table>
-                        <tr>
-                            <td>Recipient: &nbsp;</td>
-                            <td><input type="text" name="recipient"/></td>
-                        </tr>
-                        <tr>
-                            <td>Message Content: &nbsp;</td>
-                            <td><input type="text" name="content"/></td>
-                        </tr>
+                    {% csrf_token %}
+                    {{ form.as_p }}
 
-                    </table>
+
                     <br>
                     <center>
                     <button class="btn btn-primary">Send</button>

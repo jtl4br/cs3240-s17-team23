@@ -6,6 +6,11 @@ from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from django.views.decorators.csrf import csrf_exempt
 import datetime
+from Crypto.PublicKey import RSA
+from Crypto import Random
+import os
+
+
 
 from django.db.models import Q
 
@@ -30,11 +35,28 @@ def signupform(request):
             user.first_name = request.POST['firstname']
             user.last_name = request.POST['lastname']
             user.user_type = request.POST['Type']
+            random_generator = Random.new().read
+            key = RSA.generate(1024, random_generator)
+            pubkey = key.publickey().exportKey()
+            #print(public_key)
+            #user.public_key = str(pubkey)
+            user.public_key = pubkey
+            user.save()
+
+
+            module_dir = os.path.dirname(__file__)  # get current directory
+            file_path = os.path.join(module_dir, 'key.txt')
+
+            #
+            with open(file_path, 'w') as output_file:
+            #
+                 output_file.write(str(key.exportKey()))
+
             user.save()
             request.session['username'] = request.POST['username']
             request.session['user_type'] = user.user_type
             request.session['loggedIn'] = True
-            return render(request, 'success.html')
+            return render(request, 'success2.html', {'key': str(key.exportKey())})
     else:
     # creating a new form
         form = Signup()
@@ -80,6 +102,7 @@ def login_view(request):
             return render(request, 'logintemp.html', {'form': form})
 
 def home(request):
+
     if 'loggedIn' not in request.session:
         request.session['loggedIn'] = False
     if request.session['loggedIn'] == False:
@@ -92,6 +115,7 @@ def home(request):
         elif user_type == 'CMP_USR':
             return render(request, 'cmp_home.html')
     return render(request, 'home.html')
+
 
 def logout(request):
     request.session['username'] = None
@@ -123,6 +147,7 @@ def reportform(request):
             report.industry = request.POST.get("company_industry", '')
             report.projects = request.POST.get("company_projects", '')
             report.private = request.POST.get("private", '')
+            report.enc_file = request.POST.get("enc_file_op", '')
             report.timestamp = datetime.datetime.now()
             report.save()
             files = request.FILES.getlist('file_field')
@@ -137,9 +162,9 @@ def reportform(request):
         else:
             return render(request, 'reports.html', {'form': form})
     else:
-        form = ReportForm(request.GET)
+        form = ReportForm()
         return render(request, 'reports.html', {'form': form})
-
+#form = ReportForm(request.GET)
 def getReports(request):
     user = request.user
     for each in report.objects.all():
@@ -149,36 +174,37 @@ def getReports(request):
     reports = report.objects.all()
     listReports = []
 
-    for rep in reports:
-        if rep.private == False or user.admin_status:
+    if user.admin_status:
+        for rep in reports:
+            #if rep.private == False or user.admin_status:
             listReports.append(rep)
+    else:
+        myGroups = request.user.groups.all()
 
-    myGroups = request.user.groups.all()
+        storedUsers = SiteUser.objects.all()  # Get all of the users who have been created
 
-    storedUsers = SiteUser.objects.all()  # Get all of the users who have been created
+        # Find every user that you are in a group with
+        usernamesList = []
+        for user in storedUsers:  # Get all users
+            otherUserGroups = user.groups.all()  # Get current user's groups
+            for group in myGroups:  # iterate through other groups
+                for otherGroup in otherUserGroups:  # iterate through every other user's groups
+                    if str(group.name) == str(
+                            otherGroup.name) and user not in usernamesList:  # Find every person that you share a group with
+                        usernamesList.append(user)
 
-    # Find every user that you are in a group with
-    usernamesList = []
-    for user in storedUsers:  # Get all users
-        otherUserGroups = user.groups.all()  # Get current user's groups
-        for group in myGroups:  # iterate through other groups
-            for otherGroup in otherUserGroups:  # iterate through every other user's groups
-                if str(group.name) == str(
-                        otherGroup.name) and user not in usernamesList:  # Find every person that you share a group with
-                    usernamesList.append(user)
+        # for username in usernamesList:
+        #     print("I share a group with: ", username)
 
-    # for username in usernamesList:
-    #     print("I share a group with: ", username)
-
-    # Display public reports and only private reports from group members
-    for rep in reports:
-        if rep.private == False:
-            listReports.append(rep)
-        else:
-            print(rep.username)
-            if str(rep.username) in str(usernamesList):
-                print("dislay private report from: ", rep.username)
+        # Display public reports and only private reports from group members
+        for rep in reports:
+            if rep.private == False:
                 listReports.append(rep)
+            else:
+                print(rep.username)
+                if str(rep.username) in str(usernamesList):
+                    print("dislay private report from: ", rep.username)
+                    listReports.append(rep)
     return render(request, 'viewReports.html', {'reports': listReports})
 
 @csrf_exempt

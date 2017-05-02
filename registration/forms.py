@@ -22,7 +22,10 @@ class LoginForm(forms.Form):
 
 
 class ReportForm(ModelForm):
+
     file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required = False)
+    encrypted = forms.BooleanField(label='Encrypt this file?', required = False)
+
     class Meta:
         model = report
         fields = ['company_name','company_phone', 'ceo', 'company_email', 'company_location', 'company_country',

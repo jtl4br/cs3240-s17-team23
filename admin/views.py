@@ -54,3 +54,15 @@ def deleteGroup(request, group_id):
         return render(request, 'cmp_home.html')
     else:
         return render(request, 'inv_home.html')
+
+@csrf_exempt
+def deleteReport(request, form_id):
+
+    report.objects.filter(id=form_id).delete()
+
+    #recipient = request.user.username
+
+    # only display message sent to the current user
+    #messages = message.objects.filter(Q(message_recipient__iexact=recipient))
+
+    return render(request, 'viewReports.html', {'reports': report})

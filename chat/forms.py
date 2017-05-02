@@ -3,8 +3,10 @@ from django import forms
 from django.forms import ModelForm
 
 class MessageForm(forms.Form):
+ #does this have to be forms.ModelForm??
     recipient = forms.CharField(label='Recipient', max_length=25, required=True)
     content = forms.CharField(label='Content', max_length=500, required=True)
+    encrypted = forms.BooleanField(label='Encrypted', required = False)
     #sender = forms.CharField(label='Content', max_length=500, required=True)
 
 # creating our forms
@@ -23,3 +25,6 @@ class Signup(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField(label='username', max_length=25, required=True)
     password = forms.CharField(label='password', max_length=25, widget=forms.PasswordInput, required=True)
+
+class Upload(forms.Form):
+    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False)
