@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from django.views.decorators.csrf import csrf_exempt
-from registration.models import report
+from registration.models import report, UserFiles
 from CS3240FinalProject import settings
 
 ### FUNCTIONS FOR INTERACTING WITH THE FDA ###
@@ -82,6 +82,7 @@ def viewReport_FDA(request):
     # dictionary to hold the single report
     singleReport = {}
     reportFiles = list()
+    reportFilesID = list()
 
     for rep in reports:
         if str(rep.id) == str(reportID):
@@ -97,21 +98,31 @@ def viewReport_FDA(request):
             singleReport[rep.id].append(rep.company_projects)
             for file in rep.files.all():
                 reportFiles.append(file.file.name)
+                reportFilesID.append(file.id)
             singleReport[rep.id].append(reportFiles)
+            singleReport[rep.id].append(reportFilesID)
 
     print(singleReport)
 
     return JsonResponse(singleReport, safe=False)
 
-def download(request,file_name):
-    file_path = settings.MEDIA_ROOT +'/'+ file_name
-    file_wrapper = FileWrapper(file(file_path,'rb'))
-    file_mimetype = mimetypes.guess_type(file_path)
-    response = HttpResponse(file_wrapper, content_type=file_mimetype )
-    response['X-Sendfile'] = file_path
-    response['Content-Length'] = os.stat(file_path).st_size
-    response['Content-Disposition'] = 'attachment; filename=%s/' % smart_str(file_name)
+@csrf_exempt
+def download(request,file_id):
+    print("In download")
+    f = UserFiles.objects.get(id=file_id)
+    print(f)
+    # file_path = settings.MEDIA_ROOT +'/'+ file_id
+    # file_wrapper = FileWrapper(file(file_path,'rb'))
+    # file_mimetype = mimetypes.guess_type(file_path)
+    response = HttpResponse(f.file, content_type='text/plain' )
+    print(response)
+    filename = f.file.name.split('/')[-1]
+    # response['X-Sendfile'] = file_path
+    # response['Content-Length'] = os.stat(file_path).st_size
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
     return response
+
+
 
 
 def encrypt_FDA(request):
@@ -141,8 +152,6 @@ def viewReport_FDA2(request):
 
     return JsonResponse(singleReport, safe=False)
 
-def encrypt_FDA(request):
-    print("done!")
 
 
 

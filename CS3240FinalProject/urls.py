@@ -16,6 +16,7 @@ from django.contrib import admin
 from admin import views as admin_views
 from chat import views as chat_views
 from profiles import views as profiles_views
+
 import django.contrib.auth
 
 urlpatterns = [
@@ -55,13 +56,14 @@ urlpatterns = [
     url(r'^deletemessage/(?P<message_id>[0-9]+)$', chat_views.deleteMessage),
 
     ### URLs FOR THE FDA ###
-    url(r'^login_FDA/', FDA_views.login_view_FDA),
+    url(r'^login_FDA/$', FDA_views.login_view_FDA),
     url(r'^viewReports_FDA/', FDA_views.viewReports_FDA),
     #url(r'^stuff/', FDA_views.profile),
     url(r'^viewReport_FDA/', FDA_views.viewReport_FDA),
 
     url(r'^keyupload/(?P<message_id>[0-9]+)$', chat_views.decrypt),
     url(r'^encrypt_FDA/', FDA_views.encrypt_FDA),
+    url(r'^download_file/(?P<file_id>[0-9]+)$', FDA_views.download),
 
     url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', profiles_views.viewProfile),
 

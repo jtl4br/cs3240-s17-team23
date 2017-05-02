@@ -1,13 +1,14 @@
 import requests
 import json
+#from .encrypt import encrypt_file
 
-<<<<<<< HEAD
 
 def login():
     username = input("Username: ")
     password = input("Password: ")
 
     r = requests.post('http://127.0.0.1:8000/login_FDA/', data={'username': username, 'password': password})
+    print(r)
     # r = requests.post('https://frozen-mesa-42823.herokuapp.com/', data = {'username':username, 'password':password})
     r = r.json()
 
@@ -52,54 +53,63 @@ def viewReport():
         print("sector: ", data[key][5])
         print("industry: ", data[key][6])
         print("projects: ", data[key][7])
-        filename = data[key][8]
+        file = data[key][8]
         print("files: ", data[key][8])
+        print("file ids: ", data[key][9])
+        file_id = data[key][9]
         print()
 
     dl = input("Would you like to download the files associated with this report? [y/n]: ")
     if dl == 'y':
-        download_file(filename)
-=======
+        #downloadFile(filename, reportID)
+        for index in range(len(file)):
+            file_name = file[index].split('/')[-1]
+            url = "http://127.0.0.1:8000/download_file/" + str(file_id[index])
+            print(url)
+            response = requests.post(url)
+            # return response
 
-def login():
-    username = input("Username: ")
-    password = input("Password: ")
-
-    r = requests.post('http://127.0.0.1:8000/login_FDA/', data={'username': username, 'password': password})
-    # r = requests.post('https://frozen-mesa-42823.herokuapp.com/', data = {'username':username, 'password':password})
-    r = r.json()
-
-    return r.get('passed')
-
-def viewReports():
-    r = requests.post('http://127.0.0.1:8000/viewReports_FDA/')
-
-    data = r.json()  # (r.json()).get('reportDictionary')
-
-    for key in data:
-        print("report id: ", key)
-        print("company name: ", data[key][0])
-        print("company phone: ", data[key][1])
-        print("ceo: ", data[key][2])
-        print("email: ", data[key][3])
-        print("location: ", data[key][4])
-        print("sector: ", data[key][5])
-        print("industry: ", data[key][6])
-        print("projects: ", data[key][7])
-        print()
-
-    return r.json()
+            # url = "http://127.0.0.1:8000/" + file[0]
+            # file_name = url.split('/')[-1]
+            # print("Now downloading: ", file_name)
+            # response = requests.get(url, stream=True)
+            with open(file_name, 'wb') as f:
+                 for chunk in response.iter_content(chunk_size=127):
+                     if chunk:
+                         f.write(chunk)
 
 
 # return data
->>>>>>> 8120f60f5c03e56d0dcbce929cb65a9092ee17b6
 
-def viewReport():
-    reportID = input("Enter the id of the report you would like to view: ")
-    r = requests.post('http://127.0.0.1:8000/viewReport_FDA/', data={'reportID': reportID})
 
-<<<<<<< HEAD
-    return r.json()
+#def downloadFile(filename, reportID):
+
+
+
+
+# return r.get('passed')
+
+# def enc():
+#     filename = input("Enter the name of the file you would like to encrypt: ")
+#     encrypt_file(filename, '0123456789123456')
+    # r = requests.post('http://127.0.0.1:8000/encrypt_FDA/', data={'filename': filename})
+    #
+    # data = r.json()
+    #
+    # for key in data:
+    #     print("report id: ", key)
+    #     print("company name: ", data[key][0])
+    #     print("company phone: ", data[key][1])
+    #     print("ceo: ", data[key][2])
+    #     print("email: ", data[key][3])
+    #     print("location: ", data[key][4])
+    #     print("sector: ", data[key][5])
+    #     print("industry: ", data[key][6])
+    #     print("projects: ", data[key][7])
+    #     print()
+    #
+    # return r.json()
+
 
 
 # return r.get('passed')
@@ -123,53 +133,8 @@ def decrypt():
     #     print()
     #
     # return r.json()
-=======
-    data = r.json()
-
-    for key in data:
-        print("report id: ", key)
-        print("company name: ", data[key][0])
-        print("company phone: ", data[key][1])
-        print("ceo: ", data[key][2])
-        print("email: ", data[key][3])
-        print("location: ", data[key][4])
-        print("sector: ", data[key][5])
-        print("industry: ", data[key][6])
-        print("projects: ", data[key][7])
-        print()
-
-    return r.json()
->>>>>>> 8120f60f5c03e56d0dcbce929cb65a9092ee17b6
 
 
-# return r.get('passed')
-
-def decrypt():
-    filename = input("Enter the name of the file you would like to encrypt: ")
-    # r = requests.post('http://127.0.0.1:8000/encrypt_FDA/', data={'filename': filename})
-    #
-    # data = r.json()
-    #
-    # for key in data:
-    #     print("report id: ", key)
-    #     print("company name: ", data[key][0])
-    #     print("company phone: ", data[key][1])
-    #     print("ceo: ", data[key][2])
-    #     print("email: ", data[key][3])
-    #     print("location: ", data[key][4])
-    #     print("sector: ", data[key][5])
-    #     print("industry: ", data[key][6])
-    #     print("projects: ", data[key][7])
-    #     print()
-    #
-    # return r.json()
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 8120f60f5c03e56d0dcbce929cb65a9092ee17b6
 # BEGINNING OF THE USER INTERFACE FOR FDA
 if login() == 'y':
     print("successful login")
@@ -193,13 +158,11 @@ if login() == 'y':
             viewReport()
         elif value == '3':
             print("temp")
-            #decrypt()
+            #enc()
         elif value != 'quit':
             print("Invalid input")
 else:
-<<<<<<< HEAD
+
     print("login failed")
 
-=======
-    print("login failed")
->>>>>>> 8120f60f5c03e56d0dcbce929cb65a9092ee17b6
+
