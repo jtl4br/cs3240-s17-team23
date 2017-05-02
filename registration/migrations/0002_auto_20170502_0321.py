@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='siteuser',
             name='user_type',
-            field=models.CharField(choices=[('CMP_USR', 'Company'), ('INV_USR', 'Investor')], default='INV_USR', max_length=7),
+            field=models.CharField(max_length=7, choices=[('INV_USR', 'Investor'), ('CMP_USR', 'Company')], default='INV_USR'),
         ),
     ]

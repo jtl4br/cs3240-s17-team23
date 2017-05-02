@@ -5,6 +5,8 @@ from .models import message
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from django.views.decorators.csrf import csrf_exempt
+from registration.models import SiteUser
+
 from django.db.models import Q
 from Crypto.PublicKey import RSA
 from registration.models import SiteUser
@@ -22,8 +24,23 @@ def messageform(request):
 
         form = MessageForm(request.POST)
         if form.is_valid():
-            new_message = message()
 
+            recipient = request.POST.get("recipient")
+
+            storedUsers = SiteUser.objects.all()
+
+            ### This code will check that the user entered exists. If not reloads the page with a warning ###
+
+            userExists = False
+            for user in storedUsers:
+                if str(user.username) == str(recipient):
+                    userExists = True
+
+            if userExists == False:
+                return render(request, "createMessageFailed.html")
+
+            new_message = message()
+            new_message.message_sender = request.user.username
             new_message.message_recipient = form.cleaned_data['recipient']
             new_message.message_content = form.cleaned_data['content']
             new_message.message_encrypted = form.cleaned_data['encrypted']
@@ -54,7 +71,11 @@ def messageform(request):
 
             new_message.save()
 
-            return render(request, 'cmp_home.html')
+            if request.user.user_type == "CMP_USR":
+                return render(request, 'cmp_home.html')
+            else:
+                return render(request, 'inv_home.html')
+
         else:
             error_string = ""
             for field in form:
@@ -64,9 +85,10 @@ def messageform(request):
 
         # Go back to appropriate home page
         if request.user.user_type == "CMP_USR":
-             return render(request, 'cmp_home.html')
+            return render(request, 'cmp_home.html')
         else:
-             return render(request, 'inv_home.html')
+            return render(request, 'inv_home.html')
+
 
     elif request.method == "GET":
         form = MessageForm()

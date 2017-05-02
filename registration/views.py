@@ -56,7 +56,12 @@ def signupform(request):
             request.session['username'] = request.POST['username']
             request.session['user_type'] = user.user_type
             request.session['loggedIn'] = True
+
             return render(request, 'success2.html', {'key': str(key.exportKey())})
+
+            #user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            #login(request, user)
+            #return render(request, 'success.html')
     else:
     # creating a new form
         form = Signup()
@@ -80,12 +85,13 @@ def login_view(request):
                 request.session['username'] = request.POST['username']
                 request.session['user_type'] = user.user_type
                 request.session['loggedIn'] = True
+                username = request.session['username']
                 if user.user_type != None:
                     if user.user_type == 'INV_USR':
-                        return render(request, 'inv_home.html')
+                        return render(request, 'inv_home.html', {'username':username})
                     elif user.user_type == 'CMP_USR':
-                        return render(request, 'cmp_home.html')
-                return render(request, 'home.html')
+                        return render(request, 'cmp_home.html', {'username':username})
+                return render(request, 'home.html', {'username':username})
 
             # A backend authenticated the credentials
             else:
@@ -109,12 +115,13 @@ def home(request):
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
     user_type = request.session['user_type']
+    username = request.session['username']
     if user_type != None:
         if user_type == 'INV_USR':
-            return render(request, 'inv_home.html')
+            return render(request, 'inv_home.html', {'username': username})
         elif user_type == 'CMP_USR':
-            return render(request, 'cmp_home.html')
-    return render(request, 'home.html')
+            return render(request, 'cmp_home.html', {'username': username})
+    return render(request, 'home.html', {'username': username})
 
 
 def logout(request):
@@ -131,6 +138,8 @@ def reportform(request):
     if request.session['loggedIn'] == False:
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
+    if request.session['user_type'] == "INV_USR":
+        return render(request, 'inv_home.html')
     if request.method == 'POST':
         form = ReportForm(request.POST, request.FILES)
         print(form.errors)

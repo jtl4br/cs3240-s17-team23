@@ -41,7 +41,6 @@ def login_view_FDA(request):
         }
         return JsonResponse(data, safe=False)
 
-
 @csrf_exempt
 def viewReports_FDA(request):
     reports = report.objects.all()
@@ -68,9 +67,11 @@ def viewReports_FDA(request):
             reportFiles.append(file.file.name)
         reportDictionary[rep.id].append(reportFiles)
 
+
     print(reportDictionary)
 
     return JsonResponse(reportDictionary, safe=False)
+
 
 
 @csrf_exempt
@@ -116,34 +117,32 @@ def download(request,file_name):
 def encrypt_FDA(request):
     print("done!")
 
+@csrf_exempt
+def viewReport_FDA2(request):
+    reportID = request.POST.get('reportID')
+    reports = report.objects.all()
+# dictionary to hold the single report
+    singleReport = {}
 
+    for rep in reports:
+        if str(rep.id) == str(reportID):
+            singleReport[rep.id] = list()
+            singleReport[rep.id].append(rep.company_name)
+            singleReport[rep.id].append(rep.company_phone)
+            singleReport[rep.id].append(rep.ceo)
+            singleReport[rep.id].append(rep.company_email)
+            singleReport[rep.id].append(rep.company_location)
+            # reportDictionary[rep.id].append(rep.company_country)
+            singleReport[rep.id].append(rep.company_sector)
+            singleReport[rep.id].append(rep.company_industry)
+            singleReport[rep.id].append(rep.company_projects)
 
+    print(singleReport)
 
+    return JsonResponse(singleReport, safe=False)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def encrypt_FDA(request):
+    print("done!")
 
 
 
