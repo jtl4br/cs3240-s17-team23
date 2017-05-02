@@ -28,13 +28,13 @@ def messageform(request):
 
             ### This code will check that the user entered exists. If not reloads the page with a warning ###
 
-            # userExists = False
-            # for user in storedUsers:
-            #     if str(user.username) == str(recipient):
-            #         userExists = True
+            userExists = False
+            for user in storedUsers:
+                if str(user.username) == str(recipient):
+                    userExists = True
 
-            # if userExists == False:
-            #     return render(request, "createMessageFailed.html")
+            if userExists == False:
+                return render(request, "createMessageFailed.html")
 
             new_message = message()
             new_message.message_recipient = request.POST.get("recipient")
