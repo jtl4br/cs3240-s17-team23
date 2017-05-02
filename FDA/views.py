@@ -1,5 +1,3 @@
-
-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
@@ -16,8 +14,6 @@ from django.utils.encoding import smart_str
 import os
 import mimetypes
 from django.http import HttpResponse
-from django.core.servers.basehttp import FileWrapper
-
 
 @csrf_exempt
 def login_view_FDA(request):
