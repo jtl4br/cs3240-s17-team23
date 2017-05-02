@@ -131,7 +131,16 @@ def addUser(request, group_id):
 
         storedUsers = SiteUser.objects.all() # Get all of the users who have been created
 
-        print("BEFORE LOOP")
+        userExists = False
+        for user in storedUsers:
+            if str(user.username) == str(name):
+                userExists = True
+                break
+
+        if userExists == False:
+            id = group_id
+            return render(request, 'addUserToGroupFailed.html', {'id': id})
+
         for user in storedUsers:        # The already made users
             if user.username == name:
 
