@@ -156,7 +156,7 @@ def reportform(request):
             report.industry = request.POST.get("company_industry", '')
             report.projects = request.POST.get("company_projects", '')
             report.private = request.POST.get("private", '')
-            report.enc_file = request.POST.get("enc_file_op", '')
+            report.enc_file_op = request.POST.get("encrypted", '')
             report.timestamp = datetime.datetime.now()
             report.save()
             files = request.FILES.getlist('file_field')

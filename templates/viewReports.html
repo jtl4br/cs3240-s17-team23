@@ -84,9 +84,13 @@
         <p>Projects : {{ report.company_projects }}</p>
         <p>Timestamp : {{ report.timestamp }}</p>
         <p> {% for file in report.files.all %}
+            {% if report.enc_file_op == False %}
             {% load static %}
 <button><a href="{% static file.file.url %}" download>{{ file.file.name }}</a></button>
-
+            {% endif %}
+            {% if report.enc_file_op == True%}
+            <p>{{ file.file.name }}</p>
+            {% endif %}
             {% endfor %}
         </p>
 

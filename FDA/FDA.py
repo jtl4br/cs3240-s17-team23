@@ -1,6 +1,6 @@
 import requests
 import json
-from encrypt import encrypt_file
+from encrypt import encrypt_file, decrypt_file
 
 
 def login():
@@ -8,7 +8,6 @@ def login():
     password = input("Password: ")
 
     r = requests.post('http://127.0.0.1:8000/login_FDA/', data={'username': username, 'password': password})
-    print(r)
     # r = requests.post('https://frozen-mesa-42823.herokuapp.com/', data = {'username':username, 'password':password})
     r = r.json()
 
@@ -30,6 +29,8 @@ def viewReports():
         print("industry: ", data[key][6])
         print("projects: ", data[key][7])
         print("files: ", data[key][8])
+        print("encrypted: ", data[key][9])
+
         print()
 
     return r.json()
@@ -57,26 +58,31 @@ def viewReport():
         print("files: ", data[key][8])
         print("file ids: ", data[key][9])
         file_id = data[key][9]
+        print("encrypted: ", data[key][10])
         print()
 
     dl = input("Would you like to download the files associated with this report? [y/n]: ")
     if dl == 'y':
         #downloadFile(filename, reportID)
+        print(file)
         for index in range(len(file)):
             file_name = file[index].split('/')[-1]
             url = "http://127.0.0.1:8000/download_file/" + str(file_id[index])
             print(url)
-            response = requests.post(url)
+            response = requests.get(url)
             # return response
 
             # url = "http://127.0.0.1:8000/" + file[0]
             # file_name = url.split('/')[-1]
             # print("Now downloading: ", file_name)
             # response = requests.get(url, stream=True)
+
             with open(file_name, 'wb') as f:
                  for chunk in response.iter_content(chunk_size=127):
                      if chunk:
                          f.write(chunk)
+            if data[key][10] == True:
+                decrypt_file(file_name, '0123456789123456')
 
 
 # return data
@@ -157,7 +163,6 @@ if login() == 'y':
         elif value == '2':
             viewReport()
         elif value == '3':
-            print("temp")
             enc()
         elif value != 'quit':
             print("Invalid input")

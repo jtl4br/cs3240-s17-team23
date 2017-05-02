@@ -59,9 +59,12 @@ def viewReports_FDA(request):
         reportDictionary[rep.id].append(rep.company_sector)
         reportDictionary[rep.id].append(rep.company_industry)
         reportDictionary[rep.id].append(rep.company_projects)
+
         for file in rep.files.all():
             reportFiles.append(file.file.name)
         reportDictionary[rep.id].append(reportFiles)
+        reportDictionary[rep.id].append(rep.enc_file_op)
+
 
 
     print(reportDictionary)
@@ -75,6 +78,7 @@ def viewReport_FDA(request):
     reportID = request.POST.get('reportID')
     reports = report.objects.all()
 
+    print(reportID)
     # dictionary to hold the single report
     singleReport = {}
     reportFiles = list()
@@ -82,21 +86,25 @@ def viewReport_FDA(request):
 
     for rep in reports:
         if str(rep.id) == str(reportID):
+            print("found :" + str(rep.id))
             singleReport[rep.id] = list()
             singleReport[rep.id].append(rep.company_name)
             singleReport[rep.id].append(rep.company_phone)
             singleReport[rep.id].append(rep.ceo)
             singleReport[rep.id].append(rep.company_email)
             singleReport[rep.id].append(rep.company_location)
-            # reportDictionary[rep.id].append(rep.company_country)
             singleReport[rep.id].append(rep.company_sector)
             singleReport[rep.id].append(rep.company_industry)
             singleReport[rep.id].append(rep.company_projects)
+
             for file in rep.files.all():
                 reportFiles.append(file.file.name)
                 reportFilesID.append(file.id)
             singleReport[rep.id].append(reportFiles)
             singleReport[rep.id].append(reportFilesID)
+            singleReport[rep.id].append(rep.enc_file_op)
+
+            #reportDictionary[rep.id].append(rep.company_country)
 
     print(singleReport)
 
