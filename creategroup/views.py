@@ -14,6 +14,8 @@ from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from .models import tempModel
 
+from registration.models import SiteUser
+
 
 
 @csrf_exempt
@@ -23,6 +25,9 @@ def createGroup(request):
     if request.session['loggedIn'] == False:
         form = LoginForm()
         return render(request, 'logintemp.html', {'form': form})
+
+
+    storedUsers = SiteUser.objects.all()  # Get all of the users who have been created
 
     if request.method == 'POST':
 
@@ -43,6 +48,16 @@ def createGroup(request):
             groupUsers = str(users)
             groupUsers = groupUsers.split() # Get list of usernames entered, split on whitespace
             storedUsers = SiteUser.objects.all() # Get all of the users who have been created
+
+            for user in groupUsers:
+                userExists = False
+                for stUser in storedUsers:
+                    if str(user) == str(stUser.username):
+                        userExists = True
+
+                if userExists == False:
+                    return render(request, 'createGroupFailed.html')
+
 
             #Always add the current user, since they made the group
             request.user.groups.add(new_group)
@@ -113,7 +128,16 @@ def addUser(request, group_id):
 
         storedUsers = SiteUser.objects.all() # Get all of the users who have been created
 
-        print("BEFORE LOOP")
+        userExists = False
+        for user in storedUsers:
+            if str(user.username) == str(name):
+                userExists = True
+                break
+
+        if userExists == False:
+            id = group_id
+            return render(request, 'addUserToGroupFailed.html', {'id': id})
+
         for user in storedUsers:        # The already made users
             if user.username == name:
 

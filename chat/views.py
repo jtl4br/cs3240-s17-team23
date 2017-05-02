@@ -5,6 +5,7 @@ from .models import message
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from django.views.decorators.csrf import csrf_exempt
+from registration.models import SiteUser
 
 from django.db.models import Q
 
@@ -20,6 +21,21 @@ def messageform(request):
 
         form = MessageForm(request.POST)
         if form.is_valid():
+
+            recipient = request.POST.get("recipient")
+
+            storedUsers = SiteUser.objects.all()
+
+            ### This code will check that the user entered exists. If not reloads the page with a warning ###
+
+            # userExists = False
+            # for user in storedUsers:
+            #     if str(user.username) == str(recipient):
+            #         userExists = True
+
+            # if userExists == False:
+            #     return render(request, "createMessageFailed.html")
+
             new_message = message()
             new_message.message_recipient = request.POST.get("recipient")
             new_message.message_content = request.POST.get("content")
