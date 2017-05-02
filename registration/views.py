@@ -34,6 +34,8 @@ def signupform(request):
             request.session['username'] = request.POST['username']
             request.session['user_type'] = user.user_type
             request.session['loggedIn'] = True
+            user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            login(request, user)
             return render(request, 'success.html')
     else:
     # creating a new form
@@ -94,6 +96,7 @@ def home(request):
     return render(request, 'home.html')
 
 def logout(request):
+    user = None
     request.session['username'] = None
     request.session['user_type'] = None
     request.session['loggedIn'] = False

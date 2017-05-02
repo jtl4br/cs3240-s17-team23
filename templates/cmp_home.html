@@ -92,8 +92,18 @@
 </div>
 
 {% if user.admin_status %}
-    <a class="btn btn-primary btn-lg" href="/displayusers">View Site Users</a>
-    <a class="btn btn-primary btn-lg" href="/displaygroups">View Groups</a>
+    <a href="/displayusers">
+<div class="panel-body center" style="float:left; width:12%">
+    <i class="fa fa-users fa-5x center-icon" aria-hidden="true"></i>
+    <p>View Site Users</p>
+</div>
+</a>
+    <a href="/displaygroups">
+<div class="panel-body center" style="float:left; width:12%">
+    <i class="fa fa-users fa-5x center-icon" aria-hidden="true"></i>
+    <p>View Groups</p>
+</div>
+</a>
 {% endif %}
 
 </body>

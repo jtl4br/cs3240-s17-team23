@@ -56,6 +56,7 @@ urlpatterns = [
     url(r'^login_FDA/', FDA_views.login_view_FDA),
     url(r'^viewReports_FDA/', FDA_views.viewReports_FDA),
     url(r'^viewReport_FDA/', FDA_views.viewReport_FDA),
+    url(r'^encrypt_FDA/', FDA_views.encrypt_FDA),
 
 
 

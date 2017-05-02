@@ -88,7 +88,8 @@ def viewReport_FDA(request):
 
     return JsonResponse(singleReport, safe=False)
 
-
+def encrypt_FDA(request):
+    print("done!")
 
 
 
