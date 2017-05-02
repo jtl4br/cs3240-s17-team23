@@ -12,13 +12,6 @@ class UserProfile(models.Model):
     email = models.EmailField(max_length=50, blank=True)
     username = models.CharField(max_length=50, blank=True)
 
-    @receiver(post_save, sender=SiteUser)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
 
-    @receiver(post_save, sender=SiteUser)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
 
 #SiteUser.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
