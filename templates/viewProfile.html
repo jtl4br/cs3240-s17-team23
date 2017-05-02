@@ -54,6 +54,14 @@
 <p>Email : {{ email }}</p>
 <p>Username : {{ username }}</p>
 
+<b>I share a group with: </b>
+{% for member in groupMembers %}
+    <div>
+        <p>{{ member.username }}</p>
+
+    </div>
+{% endfor %}
+
 </center>
 
 
