@@ -60,12 +60,13 @@ def login_view(request):
                 request.session['username'] = request.POST['username']
                 request.session['user_type'] = user.user_type
                 request.session['loggedIn'] = True
+                username = request.session['username']
                 if user.user_type != None:
                     if user.user_type == 'INV_USR':
-                        return render(request, 'inv_home.html')
+                        return render(request, 'inv_home.html', {'username':username})
                     elif user.user_type == 'CMP_USR':
-                        return render(request, 'cmp_home.html')
-                return render(request, 'home.html')
+                        return render(request, 'cmp_home.html', {'username':username})
+                return render(request, 'home.html', {'username':username})
 
             # A backend authenticated the credentials
             else:
