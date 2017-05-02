@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1018bdcb-2d9d-416e-9936-4f947c652e6e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creategroup/views.py" afterPath="$PROJECT_DIR$/creategroup/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/profiles/views.py" afterPath="$PROJECT_DIR$/profiles/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/inv_home.html" afterPath="$PROJECT_DIR$/templates/inv_home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/viewProfile.html" afterPath="$PROJECT_DIR$/templates/viewProfile.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,10 +31,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/creategroup/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
+            <state relative-caret-position="1139">
               <caret line="83" column="69" lean-forward="false" selection-start-line="83" selection-start-column="69" selection-end-line="83" selection-end-column="69" />
               <folding />
             </state>
@@ -91,7 +88,7 @@
       <file leaf-file-name="viewMessages.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/viewMessages.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
+            <state relative-caret-position="-238">
               <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
               <folding />
             </state>
@@ -108,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewProfile.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="viewProfile.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/viewProfile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state relative-caret-position="306">
+              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -207,8 +204,8 @@
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/inv_home.html" />
         <option value="$PROJECT_DIR$/profiles/views.py" />
-        <option value="$PROJECT_DIR$/templates/viewProfile.html" />
         <option value="$PROJECT_DIR$/creategroup/views.py" />
+        <option value="$PROJECT_DIR$/templates/viewProfile.html" />
       </list>
     </option>
   </component>
@@ -1106,22 +1103,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/viewMessages.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/viewGroups.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1132,8 +1113,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/creategroup/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
+        <state relative-caret-position="1139">
           <caret line="83" column="69" lean-forward="false" selection-start-line="83" selection-start-column="69" selection-end-line="83" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewMessages.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/viewProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
