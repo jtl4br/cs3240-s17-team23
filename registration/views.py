@@ -75,6 +75,12 @@ def login_view(request):
         user.last_name = 'Account'
         user.user_type = 'INV_USR'
         user.admin_status = True
+        random_generator = Random.new().read
+        key = RSA.generate(1024, random_generator)
+        pubkey = key.publickey().exportKey()
+        # print(public_key)
+        # user.public_key = str(pubkey)
+        user.public_key = pubkey
         user.save()
     if request.method == 'POST':
         form = LoginForm(request.POST)
