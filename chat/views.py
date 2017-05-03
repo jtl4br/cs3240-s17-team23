@@ -37,7 +37,7 @@ def messageform(request):
                     userExists = True
 
             if userExists == False:
-                return render(request, "createMessageFailed.html")
+                return render(request, "createMessageFailed.html", {'form': form})
 
             new_message = message()
             new_message.message_sender = request.user.username

@@ -65,20 +65,13 @@
                     </center>
             </div>
             <div class="panel-body">
-                <form method="post" action="/createmessage/">
-                    <table>
-                        <tr>
-                            <td>Recipient: &nbsp;</td>
-                            <td><input type="text" name="recipient"/></td>
-                        </tr>
-                        <tr>
-                            <td>Message Content: &nbsp;</td>
-                            <td><input type="text" name="content"/></td>
-                        </tr>
+                 <form method="post" action="/createmessage/">
+                     <b color = 'red'>User not in our system!</b>
+                     <p></p>
+                    {% csrf_token %}
+                    {{ form.as_p }}
 
-                        <b>One or more users do not exist</b>
 
-                    </table>
                     <br>
                     <center>
                     <button class="btn btn-primary">Send</button>
