@@ -30,7 +30,7 @@ SECRET_KEY = 'z%*$zyq+k01a)y1jn1opphec&(6y&-cx@(covfja_9(s+)-^v*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'frozen-mesa-42823.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = [ 'frozen-mesa-42823.herokuapp.com', '127.0.0.1', 'salty-sierra-38181.herokuapp.com']
 
 
 # Application definition
